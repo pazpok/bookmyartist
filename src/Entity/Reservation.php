@@ -36,7 +36,7 @@ class Reservation
     private $dateEnd;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -46,7 +46,7 @@ class Reservation
     private $user;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -54,6 +54,96 @@ class Reservation
      * })
      */
     private $artist;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Reservation
+     */
+    public function setId(int $id): Reservation
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateStart(): \DateTime
+    {
+        return $this->dateStart;
+    }
+
+    /**
+     * @param \DateTime $dateStart
+     * @return Reservation
+     */
+    public function setDateStart(\DateTime $dateStart): Reservation
+    {
+        $this->dateStart = $dateStart;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateEnd(): \DateTime
+    {
+        return $this->dateEnd;
+    }
+
+    /**
+     * @param \DateTime $dateEnd
+     * @return Reservation
+     */
+    public function setDateEnd(\DateTime $dateEnd): Reservation
+    {
+        $this->dateEnd = $dateEnd;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return Reservation
+     */
+    public function setUser(User $user): Reservation
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getArtist(): User
+    {
+        return $this->artist;
+    }
+
+    /**
+     * @param User $artist
+     * @return Reservation
+     */
+    public function setArtist(User $artist): Reservation
+    {
+        $this->artist = $artist;
+        return $this;
+    }
 
 
 }

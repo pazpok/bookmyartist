@@ -120,7 +120,331 @@ class User
     private $soundcloud;
 
     /**
-     * @var \Template
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return User
+     */
+    public function setId(int $id): User
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstname(): string
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string $firstname
+     * @return User
+     */
+    public function setFirstname(string $firstname): User
+    {
+        $this->firstname = $firstname;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     * @return User
+     */
+    public function setLastname(string $lastname): User
+    {
+        $this->lastname = $lastname;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEMail(): string
+    {
+        return $this->eMail;
+    }
+
+    /**
+     * @param string $eMail
+     * @return User
+     */
+    public function setEMail(string $eMail): User
+    {
+        $this->eMail = $eMail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     * @return User
+     */
+    public function setPassword(string $password): User
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * @param string|null $pseudo
+     * @return User
+     */
+    public function setPseudo(?string $pseudo): User
+    {
+        $this->pseudo = $pseudo;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTemplateImage(): ?string
+    {
+        return $this->templateImage;
+    }
+
+    /**
+     * @param string|null $templateImage
+     * @return User
+     */
+    public function setTemplateImage(?string $templateImage): User
+    {
+        $this->templateImage = $templateImage;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTemplateDescription(): ?string
+    {
+        return $this->templateDescription;
+    }
+
+    /**
+     * @param string|null $templateDescription
+     * @return User
+     */
+    public function setTemplateDescription(?string $templateDescription): User
+    {
+        $this->templateDescription = $templateDescription;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getArtistId(): ?string
+    {
+        return $this->artistId;
+    }
+
+    /**
+     * @param string|null $artistId
+     * @return User
+     */
+    public function setArtistId(?string $artistId): User
+    {
+        $this->artistId = $artistId;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isArtist(): bool
+    {
+        return $this->isArtist;
+    }
+
+    /**
+     * @param bool $isArtist
+     * @return User
+     */
+    public function setIsArtist(bool $isArtist): User
+    {
+        $this->isArtist = $isArtist;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param string|null $facebook
+     * @return User
+     */
+    public function setFacebook(?string $facebook): User
+    {
+        $this->facebook = $facebook;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTwitter(): ?string
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param string|null $twitter
+     * @return User
+     */
+    public function setTwitter(?string $twitter): User
+    {
+        $this->twitter = $twitter;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getYoutube(): ?string
+    {
+        return $this->youtube;
+    }
+
+    /**
+     * @param string|null $youtube
+     * @return User
+     */
+    public function setYoutube(?string $youtube): User
+    {
+        $this->youtube = $youtube;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSpotify(): ?string
+    {
+        return $this->spotify;
+    }
+
+    /**
+     * @param string|null $spotify
+     * @return User
+     */
+    public function setSpotify(?string $spotify): User
+    {
+        $this->spotify = $spotify;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSoundcloud(): ?string
+    {
+        return $this->soundcloud;
+    }
+
+    /**
+     * @param string|null $soundcloud
+     * @return User
+     */
+    public function setSoundcloud(?string $soundcloud): User
+    {
+        $this->soundcloud = $soundcloud;
+        return $this;
+    }
+
+    /**
+     * @return Template
+     */
+    public function getTemplate(): Template
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param Template $template
+     * @return User
+     */
+    public function setTemplate(Template $template): User
+    {
+        $this->template = $template;
+        return $this;
+    }
+
+    /**
+     * @return Type
+     */
+    public function getType(): Type
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param Type $type
+     * @return User
+     */
+    public function setType(Type $type): User
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGenre(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->genre;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $genre
+     * @return User
+     */
+    public function setGenre(\Doctrine\Common\Collections\Collection $genre): User
+    {
+        $this->genre = $genre;
+        return $this;
+    }
+
+    /**
+     * @var Template
      *
      * @ORM\ManyToOne(targetEntity="Template")
      * @ORM\JoinColumns({
@@ -130,7 +454,7 @@ class User
     private $template;
 
     /**
-     * @var \Type
+     * @var Type
      *
      * @ORM\ManyToOne(targetEntity="Type")
      * @ORM\JoinColumns({
@@ -153,6 +477,8 @@ class User
      * )
      */
     private $genre;
+
+
 
     /**
      * Constructor

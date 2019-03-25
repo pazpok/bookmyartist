@@ -36,6 +36,61 @@ class Genre
     private $user;
 
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Genre
+     */
+    public function setId(int $id): Genre
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLibelle(): string
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * @param string $libelle
+     * @return Genre
+     */
+    public function setLibelle(string $libelle): Genre
+    {
+        $this->libelle = $libelle;
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUser(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $user
+     * @return Genre
+     */
+    public function setUser(\Doctrine\Common\Collections\Collection $user): Genre
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+
+    /**
      * Constructor
      */
     public function __construct()
