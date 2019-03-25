@@ -2,11 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}BookMyArtist{% endblock %}</title>
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block header %}
+            <div class="main-nav my-2 my-md-0 mr-md-3">
+                <nav>
+                    <form action=""><label for="artist-search"></label>
+                        <input type="text" name="artist-search" placeholder="Rechercher un artise">
+                    </form>
+                    <img src="{{ asset('uploads/logo.png') }}" alt="BookMyArtist">
+                    <a href="{{ path('registration') }}" class="btn">S'inscrire</a>
+                    <a href="{{ path('login') }}" class="btn">Se connecter</a>
+                </nav>
+            </div>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
