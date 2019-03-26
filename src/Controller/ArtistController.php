@@ -5,10 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class ArtistController
+ * @package App\Controller
+ * @Route("/artiste")
+ */
 class ArtistController extends AbstractController
 {
     /**
-     * @Route("/artist", name="artist")
+     * @Route("/show/{pseudo}", name="artist")
      */
     public function index()
     {

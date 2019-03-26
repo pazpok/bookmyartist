@@ -23,18 +23,18 @@ class UserType extends AbstractType
             ->add('lastname')
             ->add('email', RepeatedType::class, [
                 'type' => EmailType::class,
-                'first_options' => ['label' => 'E-mail'],
-                'second_options' => ['label' => 'Répétez votre e-mail']
+                'first_options' => ['label' => 'E-mail : '],
+                'second_options' => ['label' => 'Répétez votre e-mail : ']
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Répétez votre mot de passe']
+                'first_options' => ['label' => 'Mot de passe : '],
+                'second_options' => ['label' => 'Répétez votre mot de passe : ']
             ])
-            ->add('termsAccepted', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => new isTrue()
-            ])
+//            ->add('termsAccepted', CheckboxType::class, [
+//                'mapped' => false,
+//                'constraints' => new isTrue()
+//            ])
             ;
     }
     public function configureOptions(OptionsResolver $resolver)

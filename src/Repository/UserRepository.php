@@ -19,6 +19,16 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function findArtistUser(User $user): array
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        $qb = $qb->where($qb->expr()->eq('u.is_artist', true));
+
+        return $qb->setParameter(':user', false)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

@@ -3,8 +3,8 @@
 {% block body %}
     <div class="container">
         {{ form_start(form) }}
-        {{ form_row(form.firstname) }}
-        {{ form_row(form.lastname) }}
+        {{ form_row(form.firstname, { 'label' : 'Prénom : '}) }}
+        {{ form_row(form.lastname, { 'label' : 'Nom : '}) }}
         {{ form_row(form.email.first) }}
         {{ form_row(form.email.second) }}
         {{ form_row(form.plainPassword.first) }}

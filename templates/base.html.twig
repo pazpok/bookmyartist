@@ -13,14 +13,21 @@
                         <input type="text" name="artist-search" placeholder="Rechercher un artise">
                     </form>
                     <img src="{{ asset('uploads/logo.png') }}" alt="BookMyArtist">
-                    <a href="{{ path('app_register') }}" class="btn">S'inscrire</a>
-                    <a href="{{ path('app_login') }}" class="btn">Se connecter</a>
+                    {% if app.user %}
+                        <a href="{{ path('app_user', {'id': app.user.id}) }}" class="btn">Mon compte</a>
+                        <a href="{{ path('app_logout') }}" class="btn">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ path('app_register') }}" class="btn">S'inscrire</a>
+                        <a href="{{ path('app_login') }}" class="btn">Se connecter</a>
+                    {% endif %}
                 </nav>
             </div>
         {% endblock %}
         <main>
             {% block body %} {% endblock %}
         </main>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>

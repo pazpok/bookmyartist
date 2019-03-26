@@ -510,13 +510,10 @@ class User implements UserInterface
         $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     *
-     * @return null (Role|string)[] The user roles
-     */
+
     public function getRoles()
     {
-        return null;
+        return [];
     }
 
     /**
