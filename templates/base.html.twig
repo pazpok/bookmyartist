@@ -13,11 +13,14 @@
                         <input type="text" name="artist-search" placeholder="Rechercher un artise">
                     </form>
                     <img src="{{ asset('uploads/logo.png') }}" alt="BookMyArtist">
-                    <a href="{{ path('registration') }}" class="btn">S'inscrire</a>
-                    <a href="{{ path('login') }}" class="btn">Se connecter</a>
+                    <a href="{{ path('app_register') }}" class="btn">S'inscrire</a>
+                    <a href="{{ path('app_login') }}" class="btn">Se connecter</a>
                 </nav>
             </div>
         {% endblock %}
+        <main>
+            {% block body %} {% endblock %}
+        </main>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

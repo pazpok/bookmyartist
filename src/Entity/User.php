@@ -3,14 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="e-mail_UNIQUE", columns={"e-mail"})}, indexes={@ORM\Index(name="fk_artist_template1_idx", columns={"template_id"}), @ORM\Index(name="fk_user_type1_idx", columns={"type_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -20,104 +22,6 @@ class User
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
-     */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
-     */
-    private $lastname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="e-mail", type="string", length=255, nullable=false)
-     */
-    private $eMail;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
-     */
-    private $password;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="pseudo", type="string", length=255, nullable=true)
-     */
-    private $pseudo;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="template_image", type="string", length=255, nullable=true)
-     */
-    private $templateImage;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="template_description", type="text", length=65535, nullable=true)
-     */
-    private $templateDescription;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="artist_id", type="string", length=255, nullable=true)
-     */
-    private $artistId;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="is_artist", type="boolean", nullable=false)
-     */
-    private $isArtist = '0';
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
-     */
-    private $facebook;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
-     */
-    private $twitter;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="youtube", type="string", length=255, nullable=true)
-     */
-    private $youtube;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="spotify", type="string", length=255, nullable=true)
-     */
-    private $spotify;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="soundcloud", type="string", length=255, nullable=true)
-     */
-    private $soundcloud;
 
     /**
      * @return int
@@ -138,9 +42,16 @@ class User
     }
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
+     */
+    private $firstname;
+
+    /**
      * @return string
      */
-    public function getFirstname(): string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
@@ -156,9 +67,16 @@ class User
     }
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
+     */
+    private $lastname;
+
+    /**
      * @return string
      */
-    public function getLastname(): string
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
@@ -174,40 +92,82 @@ class User
     }
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
+     */
+    private $email;
+
+    /**
      * @return string
      */
-    public function getEMail(): string
+    public function getEMail(): ?string
     {
-        return $this->eMail;
+        return $this->email;
     }
 
     /**
-     * @param string $eMail
+     * @param string $email
      * @return User
      */
-    public function setEMail(string $eMail): User
+    public function setEMail(string $email): User
     {
-        $this->eMail = $eMail;
+        $this->email = $email;
         return $this;
     }
 
     /**
-     * @return string
+     * @Assert\NotBlank
+     * @Assert\Length(max=4096)
      */
-    public function getPassword(): string
+    private $plainPassword;
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword(): ?string
     {
-        return $this->password;
+        return $this->plainPassword;
     }
 
     /**
-     * @param string $password
+     * @param mixed $plainPassword
      * @return User
      */
-    public function setPassword(string $password): User
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): ?string
+    {
+        return (string) $this->password;
+    }
+
+
+    public function setPassword(string $password): self
     {
         $this->password = $password;
         return $this;
     }
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="pseudo", type="string", length=255, nullable=true)
+     */
+    private $pseudo;
 
     /**
      * @return string|null
@@ -228,6 +188,13 @@ class User
     }
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="template_image", type="string", length=255, nullable=true)
+     */
+    private $templateImage;
+
+    /**
      * @return string|null
      */
     public function getTemplateImage(): ?string
@@ -244,6 +211,13 @@ class User
         $this->templateImage = $templateImage;
         return $this;
     }
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="template_description", type="text", length=65535, nullable=true)
+     */
+    private $templateDescription;
 
     /**
      * @return string|null
@@ -264,6 +238,13 @@ class User
     }
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="artist_id", type="string", length=255, nullable=true)
+     */
+    private $artistId;
+
+    /**
      * @return string|null
      */
     public function getArtistId(): ?string
@@ -280,6 +261,13 @@ class User
         $this->artistId = $artistId;
         return $this;
     }
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_artist", type="boolean", nullable=false)
+     */
+    private $isArtist = '0';
 
     /**
      * @return bool
@@ -300,6 +288,13 @@ class User
     }
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     */
+    private $facebook;
+
+    /**
      * @return string|null
      */
     public function getFacebook(): ?string
@@ -316,6 +311,13 @@ class User
         $this->facebook = $facebook;
         return $this;
     }
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     */
+    private $twitter;
 
     /**
      * @return string|null
@@ -336,6 +338,13 @@ class User
     }
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="youtube", type="string", length=255, nullable=true)
+     */
+    private $youtube;
+
+    /**
      * @return string|null
      */
     public function getYoutube(): ?string
@@ -352,6 +361,13 @@ class User
         $this->youtube = $youtube;
         return $this;
     }
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="spotify", type="string", length=255, nullable=true)
+     */
+    private $spotify;
 
     /**
      * @return string|null
@@ -372,6 +388,13 @@ class User
     }
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="soundcloud", type="string", length=255, nullable=true)
+     */
+    private $soundcloud;
+
+    /**
      * @return string|null
      */
     public function getSoundcloud(): ?string
@@ -388,6 +411,16 @@ class User
         $this->soundcloud = $soundcloud;
         return $this;
     }
+
+    /**
+     * @var Template
+     *
+     * @ORM\ManyToOne(targetEntity="Template")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="template_id", referencedColumnName="id")
+     * })
+     */
+    private $template;
 
     /**
      * @return Template
@@ -408,6 +441,16 @@ class User
     }
 
     /**
+     * @var Type
+     *
+     * @ORM\ManyToOne(targetEntity="Type")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     * })
+     */
+    private $type;
+
+    /**
      * @return Type
      */
     public function getType(): Type
@@ -424,6 +467,21 @@ class User
         $this->type = $type;
         return $this;
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="user")
+     * @ORM\JoinTable(name="user_has_genre",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $genre;
 
     /**
      * @return \Doctrine\Common\Collections\Collection
@@ -443,42 +501,6 @@ class User
         return $this;
     }
 
-    /**
-     * @var Template
-     *
-     * @ORM\ManyToOne(targetEntity="Template")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="template_id", referencedColumnName="id")
-     * })
-     */
-    private $template;
-
-    /**
-     * @var Type
-     *
-     * @ORM\ManyToOne(targetEntity="Type")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="type_id", referencedColumnName="id")
-     * })
-     */
-    private $type;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="user")
-     * @ORM\JoinTable(name="user_has_genre",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $genre;
-
-
 
     /**
      * Constructor
@@ -488,4 +510,38 @@ class User
         $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     *
+     * @return null (Role|string)[] The user roles
+     */
+    public function getRoles()
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+
+    }
 }
