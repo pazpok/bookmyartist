@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 
 /**
  * Type
@@ -63,7 +64,5 @@ class Type
         $this->libelle = $libelle;
         return $this;
     }
-
-
 
 }

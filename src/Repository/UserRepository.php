@@ -19,7 +19,7 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function findArtistUser(User $user): array
+    public function findUser(User $user): array
     {
         $qb = $this->createQueryBuilder('u');
 

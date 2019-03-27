@@ -3,22 +3,46 @@
 {% block title %}Mon Compte{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
     <h1>Bonjour {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
-    <form action="">
-        <label for="firstname">Prénom</label>
-        <input type="text" value="{{ app.user.firstname }}">
-        <label for="firstname">Nom</label>
-        <input type="text" value="{{ app.user.lastname }}">
-        <label for="firstname">email</label>
-        <input type="text" value="{{ app.user.email }}">
-        <label for="firstname">Mot de passe</label>
-        <input type="text">
-    </form>
+    {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    {#<form action="">#}
+        {#<label for="firstname">Prénom</label>#}
+        {#<input type="text" value="{{ app.user.firstname }}">#}
+        {#<label for="firstname">Nom</label>#}
+        {#<input type="text" value="{{ app.user.lastname }}">#}
+        {#<label for="firstname">email</label>#}
+        {#<input type="text" value="{{ app.user.email }}">#}
+        {#<label for="firstname">Mot de passe</label>#}
+        {#<input type="text">#}
+        {#<label for="pseudo">Pseudo</label>#}
+        {#<input type="text" value="{{ app.user.pseudo }}">#}
+        {#{% if app.user.isArtist %}#}
+            {#<label for="pseudo">Type</label>#}
+            {#<select name="" id="">#}
+                {#<option value="DJ">DJ</option>#}
+                {#<option value="Groupe">Groupe</option>#}
+            {#</select>#}
+            {#<label for="pseudo">Genre</label>#}
+            {#<select name="" id="">#}
+                {#<option value="70's">70's</option>#}
+                {#<option value="Rock">Rock</option>#}
+            {#</select>#}
+            {#<label for="localisation">Localisation</label>#}
+            {#<input type="text" value="">#}
+            {#<label for="facebook"><i class="fab fa-facebook-f "></i></label>#}
+            {#<input type="text">#}
+            {#<label for="twitter"><i class="fab fa-twitter"></i></label>#}
+            {#<input type="text">#}
+            {#<label for="youtube"><i class="fab fa-youtube"></i></label>#}
+            {#<input type="text">#}
+            {#<label for="soundcloud"><i class="fab fa-soundcloud"></i></label>#}
+            {#<input type="text">#}
+            {#<label for="spotify"><i class="fab fa-spotify"></i></label>#}
+            {#<input type="text">#}
+        {#{% endif %}#}
+        {#<input type="submit" value="Modifier mes paramètres">#}
+    {#</form>#}
 </div>
 {% endblock %}

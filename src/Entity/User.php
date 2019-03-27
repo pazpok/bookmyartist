@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -453,7 +455,7 @@ class User implements UserInterface
     /**
      * @return Type
      */
-    public function getType(): Type
+    public function getType(): ?Type
     {
         return $this->type;
     }
@@ -541,4 +543,11 @@ class User implements UserInterface
     {
 
     }
+
+    public function __toString(): string
+    {
+        return $this->getGenre();
+    }
+
+
 }
