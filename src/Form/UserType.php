@@ -6,10 +6,9 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Type;
-use phpDocumentor\Reflection\Types\String_;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -24,8 +23,8 @@ class UserType extends AbstractType
     {
 
         $builder
-            ->add('isArtist', CheckboxType::class, ['label' => 'Mode artiste'])
-            ->add('pseudo', TextType::class)
+            ->add('isArtist', CheckboxType::class, ['label' => 'Mode artiste', 'required' => false])
+            ->add('pseudo', TextType::class, ['required' => false])
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('email', EmailType::class)
@@ -34,14 +33,14 @@ class UserType extends AbstractType
                 'first_options' => ['label' => 'Mot de passe : '],
                 'second_options' => ['label' => 'Répétez votre mot de passe : ']
             ])
-            ->add('type', ChoiceType::class, [
-                'label' => 'Type d\'artiste',
+            ->add('type', EntityType::class, [
+                'class' => User::class,
                 'choices' => [
-                    'DJ' => 'DJ',
-                    'Groupe' => 'Groupe',
-                ]
+                    'dj' => 'DJ',
+                    'groupe'=> 'Groupe"'
+                ],
             ])
-            ->add('genre', null)
+            ->add('genre', null, ['attr' => ['class' => 'genre-select']])
 
 
 //            ->add('termsAccepted', CheckboxType::class, [
@@ -53,8 +52,10 @@ class UserType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
+        $resolver
+            ->setDefaults([
            'data-class' => User::class,
         ]);
+
     }
 }

@@ -1,12 +1,10 @@
 import bootstrap from 'bootstrap';
-require('@fortawesome/fontawesome-free/css/all.min.css');
-require('@fortawesome/fontawesome-free/js/all.js');
-require('select2/dist/js/select2.js');
+import $ from 'jquery'
+import select2 from 'select2'
 
 
 import "../css/app.scss";
 
-const $ = require('jquery');
 
 $(document).ready(function() {
     $('.genre-select').select2();
