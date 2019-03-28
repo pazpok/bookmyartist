@@ -4,15 +4,17 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use PhpParser\Node\Scalar\String_;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="e-mail_UNIQUE", columns={"e-mail"})}, indexes={@ORM\Index(name="fk_artist_template1_idx", columns={"template_id"}), @ORM\Index(name="fk_user_type1_idx", columns={"type_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @Vich\Uploadable()
  */
 class User implements UserInterface
 {
@@ -191,6 +193,84 @@ class User implements UserInterface
 
     /**
      * @var string|null
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
+     */
+    private $picture;
+
+    /**
+     * @return string|null
+     */
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param string|null $picture
+     * @return User
+     */
+    public function setPicture(?string $picture): User
+    {
+        $this->picture = $picture;
+        return $this;
+    }
+
+    /**
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="picture")
+     * @var File
+     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
+     */
+    private $pictureFile;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime|null $updatedAt
+     * @return User
+     */
+    public function setUpdatedAt(?\DateTime $updatedAt): User
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * @param File $picture
+     *@throws \Exception
+     */
+    public function setPictureFile(File $picture = null)
+    {
+        $this->pictureFile = $picture;
+
+        if ($picture) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @var string|null
      *
      * @ORM\Column(name="template_image", type="string", length=255, nullable=true)
      */
@@ -263,6 +343,32 @@ class User implements UserInterface
         $this->artistId = $artistId;
         return $this;
     }
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
+     */
+    private $localisation;
+
+    /**
+     * @return string|null
+     */
+    public function getLocalisation(): ?string
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * @param string|null $localisation
+     * @return User
+     */
+    public function setLocalisation(?string $localisation): User
+    {
+        $this->localisation = $localisation;
+        return $this;
+    }
+
 
     /**
      * @var bool
@@ -453,9 +559,9 @@ class User implements UserInterface
     private $type;
 
     /**
-     * @return Type
+     * @return String
      */
-    public function getType(): ?Type
+    public function getType(): ?String
     {
         return $this->type;
     }
@@ -548,6 +654,5 @@ class User implements UserInterface
     {
         return $this->getGenre();
     }
-
 
 }

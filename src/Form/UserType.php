@@ -5,17 +5,14 @@ namespace App\Form;
 
 
 use App\Entity\User;
-use App\Entity\Type;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
@@ -24,23 +21,25 @@ class UserType extends AbstractType
 
         $builder
             ->add('isArtist', CheckboxType::class, ['label' => 'Mode artiste', 'required' => false])
-            ->add('pseudo', TextType::class, ['required' => false])
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
+            ->add('pseudo', null, ['required' => false])
+            ->add('pictureFile', VichImageType::class, ['label' => 'Photo de profil', 'required' => false])
+            ->add('firstname', null)
+            ->add('lastname', null)
             ->add('email', EmailType::class)
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Mot de passe : '],
                 'second_options' => ['label' => 'Répétez votre mot de passe : ']
             ])
-            ->add('type', EntityType::class, [
-                'class' => User::class,
-                'choices' => [
-                    'dj' => 'DJ',
-                    'groupe'=> 'Groupe"'
-                ],
-            ])
-            ->add('genre', null, ['attr' => ['class' => 'genre-select']])
+            ->add('artistId', null, ['label' => 'Nom d\'artiste'])
+            ->add('type', null, ['attr' => ['class' => 'artist-form']])
+            ->add('genre', null , ['attr' => ['class' => 'genre-select']])
+            ->add('localisation', null)
+            ->add('facebook', null)
+            ->add('twitter', null)
+            ->add('youtube', null)
+            ->add('soundcloud', null)
+            ->add('spotify', null)
 
 
 //            ->add('termsAccepted', CheckboxType::class, [

@@ -12,22 +12,27 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class UserController
  * @package App\Controller
- * @Route("/user")
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/{id}", name="app_user")
+     * @Route("/user/{id}", name="app_user")
      */
-    public function accompt(User $user)
+    public function accompt(Request $request,User $user)
     {
-        return $this->render('user/account.html.twig', [
-            'user' => $user,
-        ]);
+        if ($this->isCsrfTokenValid($user->getId(), $request->request->get('_token'))) {
+            return $this->render('user/account.html.twig', [
+                'user' => $user,
+            ]);
+        } else {
+            return '403 Forbidden';
+        }
+
+
     }
 
     /**
-     * @Route("/{id}", name="app_user", methods="GET|POST")
+     * @Route("/user/{id}", name="app_user", methods="GET|POST")
      */
     public function edit(Request $request, User $user): Response
     {
