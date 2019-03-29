@@ -7,23 +7,26 @@
     </head>
     <body>
         {% block header %}
-            <div class="main-nav my-2 my-md-0 mr-md-3">
-                <nav>
-                    <form action=""><label for="artist-search"></label>
-                        <input type="text" name="artist-search" placeholder="Rechercher un artise">
-                    </form>
-                    <img src="{{ asset('uploads/logo.png') }}" alt="BookMyArtist">
-                    {% if app.user %}
-                        <a href="{{ path('app_user', {'id': app.user.id}) }}" class="btn">Mon compte</a>
-                        <a href="{{ path('app_logout') }}" class="btn">Déconnexion</a>
-                    {% else %}
-                        <a href="{{ path('app_register') }}" class="btn">S'inscrire</a>
-                        <a href="{{ path('app_login') }}" class="btn">Se connecter</a>
-                    {% endif %}
-                </nav>
+            <div class="d-flex flex-column justify-content-between flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
+                    <div>
+                        <input type="text" name="artist-search" placeholder="Rechercher un artiste">
+                        <i class="fa-search"></i>
+                    </div>
+                    <div>
+                        <a class="p-2 text-dark" href="/"><img class="logo" src="{{ asset('uploads/logo.svg') }}" alt="BookMyArtist"></a>
+                    </div>
+                    <div>
+                        {% if app.user %}
+                            <a href="{{ path('app_user', {'id': app.user.id}) }}" class="btn">Mon compte</a>
+                            <a href="{{ path('app_logout') }}" class="btn">Déconnexion</a>
+                        {% else %}
+                            <a href="{{ path('app_register') }}" class="btn">S'inscrire</a>
+                            <a href="{{ path('app_login') }}" class="btn">Se connecter</a>
+                        {% endif %}
+                    </div>
             </div>
         {% endblock %}
-        <main>
+        <main class="main-content">
             {% block body %} {% endblock %}
         </main>
         {% block javascripts %}

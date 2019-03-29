@@ -15,12 +15,12 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="e-mail_UNIQUE", columns={"e-mail"})}, indexes={@ORM\Index(name="fk_artist_template1_idx", columns={"template_id"}), @ORM\Index(name="fk_user_type1_idx", columns={"type_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @Vich\Uploadable()
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -224,6 +224,27 @@ class User implements UserInterface
     private $pictureFile;
 
     /**
+     * @return File
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * @param File $picture
+     * @throws \Exception
+     */
+    public function setPictureFile(File $picture = null)
+    {
+        $this->pictureFile = $picture;
+
+        if ($picture) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
@@ -246,27 +267,6 @@ class User implements UserInterface
     {
         $this->updatedAt = $updatedAt;
         return $this;
-    }
-
-    /**
-     * @return File
-     */
-    public function getPictureFile(): ?File
-    {
-        return $this->pictureFile;
-    }
-
-    /**
-     * @param File $picture
-     *@throws \Exception
-     */
-    public function setPictureFile(File $picture = null)
-    {
-        $this->pictureFile = $picture;
-
-        if ($picture) {
-            $this->updatedAt = new \DateTime('now');
-        }
     }
 
     /**

@@ -2,7 +2,7 @@
 <article class="col-md-3">
     <div class="artist artist-card">
         {% if user.picture != null %}
-            <img class="artist-img-top" src="{{ asset('uploads/' ~ user.picture) }}" alt="{{ user.picture }}">
+            <img class="artist-img-top" src="{{ asset('uploads/images/users/user/' ~ user.picture) }}" alt="{{ user.picture }}">
         {% else %}
             <div class="card-logo-top">
                 <i>une icone</i>

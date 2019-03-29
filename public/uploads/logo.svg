@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234 128"><defs><style>.a{fill:#707070;font-size:34px;font-family:Pacifico;}.b{fill:#eb7f00;}.c{fill:#225378;}</style></defs><g transform="translate(267 -224)"><text class="a" transform="translate(-37 272)"><tspan x="-9.048" y="0"> </tspan><tspan class="b"><tspan x="-227.375" y="64">B</tspan><tspan class="c" y="64">ook </tspan><tspan y="64">M</tspan><tspan class="c" y="64">y </tspan><tspan y="64">A</tspan><tspan class="c" y="64">rtist</tspan></tspan></text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241 66">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #707070;
+        font-size: 35px;
+        font-family: Pacifico;
+      }
+
+      .cls-2 {
+        fill: #eb7f00;
+      }
+
+      .cls-3 {
+        fill: #225378;
+      }
+    </style>
+  </defs>
+  <text id="_Book_My_Artist" data-name=" 
+Book My Artist" class="cls-1" transform="translate(120 49)"><tspan x="-4.657" y="0"> </tspan><tspan class="cls-2"><tspan x="-117.031" y="1">B</tspan><tspan class="cls-3" y="1">ook </tspan><tspan y="1">M</tspan><tspan class="cls-3" y="1">y </tspan><tspan y="1">A</tspan><tspan class="cls-3" y="1">rtist</tspan></tspan></text>
+</svg>

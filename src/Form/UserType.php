@@ -31,15 +31,15 @@ class UserType extends AbstractType
                 'first_options' => ['label' => 'Mot de passe : '],
                 'second_options' => ['label' => 'Répétez votre mot de passe : ']
             ])
-            ->add('artistId', null, ['label' => 'Nom d\'artiste'])
-            ->add('type', null, ['attr' => ['class' => 'artist-form']])
-            ->add('genre', null , ['attr' => ['class' => 'genre-select']])
-            ->add('localisation', null)
-            ->add('facebook', null)
-            ->add('twitter', null)
-            ->add('youtube', null)
-            ->add('soundcloud', null)
-            ->add('spotify', null)
+            ->add('artistId', null, ['label' => 'Nom d\'artiste', 'attr' => ['class' => 'artist-hide']])
+            ->add('type', null, ['attr' => ['class' => 'artist-form artist-hide']])
+            ->add('genre', null , ['attr' => ['class' => 'genre-select artist-hide']])
+            ->add('localisation', null, ['attr' => ['class' => 'artist-hide']])
+            ->add('facebook', null, ['attr' => ['class' => 'artist-hide']])
+            ->add('twitter', null, ['attr' => ['class' => 'artist-hide']])
+            ->add('youtube', null, ['attr' => ['class' => 'artist-hide']])
+            ->add('soundcloud', null, ['attr' => ['class' => 'artist-hide']])
+            ->add('spotify', null, ['attr' => ['class' => 'artist-hide']])
 
 
 //            ->add('termsAccepted', CheckboxType::class, [
