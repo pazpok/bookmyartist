@@ -6,6 +6,15 @@
 <div class="example-wrapper">
     <h1>Bonjour {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
     {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    <br>
+    {% if user.isArtist %}
+        <h2>Mon Template</h2>
+        {% for template in templates %}
+            <a href="{{ path('app_user_template', {'id': app.user.id, 'title': template.title}) }}">{{ template.title }}</a>
+        {% endfor %}
+    {% else %}
+        <h2>Mes réservations</h2>
+    {% endif %}
 
     {#<form action="">#}
         {#<label for="firstname">Prénom</label>#}

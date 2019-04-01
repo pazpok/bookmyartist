@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Formule
  *
@@ -20,49 +17,42 @@ class Formule
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
-
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
-
     /**
      * @var int
      *
      * @ORM\Column(name="nb_musiciens", type="integer", nullable=false)
      */
     private $nbMusiciens;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="tps_install", type="time", nullable=false)
      */
     private $tpsInstall;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="tps_event", type="time", nullable=false)
      */
     private $tpsEvent;
-
     /**
      * @var int
      *
      * @ORM\Column(name="price", type="integer", nullable=false)
      */
     private $price;
-
     /**
      * @var User
      *
@@ -72,7 +62,6 @@ class Formule
      * })
      */
     private $user;
-
     /**
      * @return int
      */
@@ -80,7 +69,6 @@ class Formule
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      * @return Formule
@@ -90,7 +78,6 @@ class Formule
         $this->id = $id;
         return $this;
     }
-
     /**
      * @return string
      */
@@ -98,7 +85,6 @@ class Formule
     {
         return $this->title;
     }
-
     /**
      * @param string $title
      * @return Formule
@@ -108,7 +94,6 @@ class Formule
         $this->title = $title;
         return $this;
     }
-
     /**
      * @return string
      */
@@ -116,7 +101,6 @@ class Formule
     {
         return $this->description;
     }
-
     /**
      * @param string $description
      * @return Formule
@@ -126,7 +110,6 @@ class Formule
         $this->description = $description;
         return $this;
     }
-
     /**
      * @return int
      */
@@ -134,7 +117,6 @@ class Formule
     {
         return $this->nbMusiciens;
     }
-
     /**
      * @param int $nbMusiciens
      * @return Formule
@@ -144,7 +126,6 @@ class Formule
         $this->nbMusiciens = $nbMusiciens;
         return $this;
     }
-
     /**
      * @return \DateTime
      */
@@ -152,7 +133,6 @@ class Formule
     {
         return $this->tpsInstall;
     }
-
     /**
      * @param \DateTime $tpsInstall
      * @return Formule
@@ -162,7 +142,6 @@ class Formule
         $this->tpsInstall = $tpsInstall;
         return $this;
     }
-
     /**
      * @return \DateTime
      */
@@ -170,7 +149,6 @@ class Formule
     {
         return $this->tpsEvent;
     }
-
     /**
      * @param \DateTime $tpsEvent
      * @return Formule
@@ -180,7 +158,6 @@ class Formule
         $this->tpsEvent = $tpsEvent;
         return $this;
     }
-
     /**
      * @return int
      */
@@ -188,7 +165,6 @@ class Formule
     {
         return $this->price;
     }
-
     /**
      * @param int $price
      * @return Formule
@@ -198,7 +174,6 @@ class Formule
         $this->price = $price;
         return $this;
     }
-
     /**
      * @return User
      */
@@ -206,7 +181,6 @@ class Formule
     {
         return $this->user;
     }
-
     /**
      * @param User $user
      * @return Formule
@@ -216,7 +190,4 @@ class Formule
         $this->user = $user;
         return $this;
     }
-
-
-
 }

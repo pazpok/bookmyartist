@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Template;
 use App\Entity\User;
+use App\Form\ArtistType;
+use App\Form\TemplateType;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,9 +24,18 @@ class UserController extends AbstractController
      */
     public function accompt(Request $request,User $user)
     {
+        $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
+
         if ($this->getUser()->getId() === $user->getId()) {
-            $form = $this->createForm(UserType::class, $user);
-            $form->handleRequest($request);
+
+            if ($this->getUser()->isArtist()) {
+                $form = $this->createForm(ArtistType::class, $user);
+                $form->handleRequest($request);
+            } else {
+                $form = $this->createForm(UserType::class, $user);
+                $form->handleRequest($request);
+            }
+
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
 
@@ -31,8 +43,39 @@ class UserController extends AbstractController
             }
             return $this->render('user/account.html.twig', [
                 'user' => $user,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'templates' => $templates
             ]);
+        } else {
+            return new RedirectResponse('/', 301);
+        }
+
+
+    }
+
+    /**
+     * @Route("/user/{id}/template/{title}", name="app_user_template")
+     */
+    public function templateEdit(Request $request, User $user)
+    {
+        $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
+
+        if ($this->getUser()->getId() === $user->getId()) {
+            $form = $this->createForm(TemplateType::class, $user);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('app_user', ['id' => $user->getId()]);
+            }
+
+            return $this->render('templateuser/edit.html.twig', [
+                'user' => $user,
+                'form' => $form->createView(),
+                'templates' => $templates
+            ]);
+
         } else {
             return new RedirectResponse('/', 301);
         }

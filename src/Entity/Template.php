@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Template
  *
@@ -20,14 +17,12 @@ class Template
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
-
     /**
      * @return int
      */
@@ -35,7 +30,6 @@ class Template
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      * @return Template
@@ -45,7 +39,6 @@ class Template
         $this->id = $id;
         return $this;
     }
-
     /**
      * @return string
      */
@@ -53,7 +46,6 @@ class Template
     {
         return $this->title;
     }
-
     /**
      * @param string $title
      * @return Template
@@ -63,6 +55,4 @@ class Template
         $this->title = $title;
         return $this;
     }
-
-
 }

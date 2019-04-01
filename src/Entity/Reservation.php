@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Reservation
  *
@@ -20,21 +17,18 @@ class Reservation
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_start", type="datetime", nullable=false)
      */
     private $dateStart;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_end", type="datetime", nullable=false)
      */
     private $dateEnd;
-
     /**
      * @var User
      *
@@ -44,7 +38,6 @@ class Reservation
      * })
      */
     private $user;
-
     /**
      * @var User
      *
@@ -54,7 +47,6 @@ class Reservation
      * })
      */
     private $artist;
-
     /**
      * @return int
      */
@@ -62,7 +54,6 @@ class Reservation
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      * @return Reservation
@@ -72,7 +63,6 @@ class Reservation
         $this->id = $id;
         return $this;
     }
-
     /**
      * @return \DateTime
      */
@@ -80,7 +70,6 @@ class Reservation
     {
         return $this->dateStart;
     }
-
     /**
      * @param \DateTime $dateStart
      * @return Reservation
@@ -90,7 +79,6 @@ class Reservation
         $this->dateStart = $dateStart;
         return $this;
     }
-
     /**
      * @return \DateTime
      */
@@ -98,7 +86,6 @@ class Reservation
     {
         return $this->dateEnd;
     }
-
     /**
      * @param \DateTime $dateEnd
      * @return Reservation
@@ -108,7 +95,6 @@ class Reservation
         $this->dateEnd = $dateEnd;
         return $this;
     }
-
     /**
      * @return User
      */
@@ -116,7 +102,6 @@ class Reservation
     {
         return $this->user;
     }
-
     /**
      * @param User $user
      * @return Reservation
@@ -126,7 +111,6 @@ class Reservation
         $this->user = $user;
         return $this;
     }
-
     /**
      * @return User
      */
@@ -134,7 +118,6 @@ class Reservation
     {
         return $this->artist;
     }
-
     /**
      * @param User $artist
      * @return Reservation
@@ -144,6 +127,4 @@ class Reservation
         $this->artist = $artist;
         return $this;
     }
-
-
 }

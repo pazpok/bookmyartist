@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use PhpParser\Node\Scalar\String_;
-
 /**
  * Type
  *
@@ -21,14 +18,12 @@ class Type
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="libelle", type="string", length=255, nullable=false)
      */
     private $libelle;
-
     /**
      * @return int
      */
@@ -36,7 +31,6 @@ class Type
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      * @return Type
@@ -46,7 +40,6 @@ class Type
         $this->id = $id;
         return $this;
     }
-
     /**
      * @return string
      */
@@ -54,7 +47,6 @@ class Type
     {
         return $this->libelle;
     }
-
     /**
      * @param string $libelle
      * @return Type
@@ -64,10 +56,8 @@ class Type
         $this->libelle = $libelle;
         return $this;
     }
-
     public function __toString()
     {
         return $this->libelle;
     }
-
 }

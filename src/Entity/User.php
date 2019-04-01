@@ -1,14 +1,11 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
 /**
  * User
  *
@@ -26,7 +23,6 @@ class User implements UserInterface
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @return int
      */
@@ -34,7 +30,6 @@ class User implements UserInterface
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      * @return User
@@ -44,14 +39,12 @@ class User implements UserInterface
         $this->id = $id;
         return $this;
     }
-
     /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
      */
     private $firstname;
-
     /**
      * @return string
      */
@@ -59,7 +52,6 @@ class User implements UserInterface
     {
         return $this->firstname;
     }
-
     /**
      * @param string $firstname
      * @return User
@@ -69,14 +61,12 @@ class User implements UserInterface
         $this->firstname = $firstname;
         return $this;
     }
-
     /**
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
      */
     private $lastname;
-
     /**
      * @return string
      */
@@ -84,7 +74,6 @@ class User implements UserInterface
     {
         return $this->lastname;
     }
-
     /**
      * @param string $lastname
      * @return User
@@ -94,14 +83,12 @@ class User implements UserInterface
         $this->lastname = $lastname;
         return $this;
     }
-
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
-
     /**
      * @return string
      */
@@ -109,7 +96,6 @@ class User implements UserInterface
     {
         return $this->email;
     }
-
     /**
      * @param string $email
      * @return User
@@ -119,13 +105,11 @@ class User implements UserInterface
         $this->email = $email;
         return $this;
     }
-
     /**
      * @Assert\NotBlank
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
-
     /**
      * @return mixed
      */
@@ -133,7 +117,6 @@ class User implements UserInterface
     {
         return $this->plainPassword;
     }
-
     /**
      * @param mixed $plainPassword
      * @return User
@@ -143,14 +126,12 @@ class User implements UserInterface
         $this->plainPassword = $plainPassword;
         return $this;
     }
-
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
-
     /**
      * @see UserInterface
      */
@@ -158,21 +139,17 @@ class User implements UserInterface
     {
         return (string) $this->password;
     }
-
-
     public function setPassword(string $password): self
     {
         $this->password = $password;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="pseudo", type="string", length=255, nullable=true)
      */
     private $pseudo;
-
     /**
      * @return string|null
      */
@@ -180,7 +157,6 @@ class User implements UserInterface
     {
         return $this->pseudo;
     }
-
     /**
      * @param string|null $pseudo
      * @return User
@@ -190,14 +166,12 @@ class User implements UserInterface
         $this->pseudo = $pseudo;
         return $this;
     }
-
     /**
      * @var string|null
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
      */
     private $picture;
-
     /**
      * @return string|null
      */
@@ -205,7 +179,6 @@ class User implements UserInterface
     {
         return $this->picture;
     }
-
     /**
      * @param string|null $picture
      * @return User
@@ -215,14 +188,12 @@ class User implements UserInterface
         $this->picture = $picture;
         return $this;
     }
-
     /**
      * @Vich\UploadableField(mapping="user_images", fileNameProperty="picture")
      * @var File
      * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
      */
     private $pictureFile;
-
     /**
      * @return File
      */
@@ -230,7 +201,6 @@ class User implements UserInterface
     {
         return $this->pictureFile;
     }
-
     /**
      * @param File $picture
      * @throws \Exception
@@ -238,19 +208,16 @@ class User implements UserInterface
     public function setPictureFile(File $picture = null)
     {
         $this->pictureFile = $picture;
-
         if ($picture) {
             $this->updatedAt = new \DateTime('now');
         }
     }
-
     /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
-
     /**
      * @return \DateTime|null
      */
@@ -258,7 +225,6 @@ class User implements UserInterface
     {
         return $this->updatedAt;
     }
-
     /**
      * @param \DateTime|null $updatedAt
      * @return User
@@ -272,10 +238,34 @@ class User implements UserInterface
     /**
      * @var string|null
      *
+     * @ORM\Column(name="template_title", type="string", length=255, nullable=true)
+     */
+    private $templateTitle;
+
+    /**
+     * @return string|null
+     */
+    public function getTemplateTitle(): ?string
+    {
+        return $this->templateTitle;
+    }
+
+    /**
+     * @param string|null $templateTitle
+     * @return User
+     */
+    public function setTemplateTitle(?string $templateTitle): User
+    {
+        $this->templateTitle = $templateTitle;
+        return $this;
+    }
+
+    /**
+     * @var string|null
+     *
      * @ORM\Column(name="template_image", type="string", length=255, nullable=true)
      */
     private $templateImage;
-
     /**
      * @return string|null
      */
@@ -283,7 +273,6 @@ class User implements UserInterface
     {
         return $this->templateImage;
     }
-
     /**
      * @param string|null $templateImage
      * @return User
@@ -295,12 +284,38 @@ class User implements UserInterface
     }
 
     /**
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="picture")
+     * @var File
+     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
+     */
+    private $templateImageFile;
+
+    /**
+     * @return File
+     */
+    public function getTemplateImageFile(): ?File
+    {
+        return $this->templateImageFile;
+    }
+
+    /**
+     * @param File $templateImage
+     * @throws \Exception
+     */
+    public function setTemplateImageFile(File $templateImage = null)
+    {
+        $this->templateImageFile = $templateImage;
+        if ($templateImage) {
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="template_description", type="text", length=65535, nullable=true)
      */
     private $templateDescription;
-
     /**
      * @return string|null
      */
@@ -308,7 +323,6 @@ class User implements UserInterface
     {
         return $this->templateDescription;
     }
-
     /**
      * @param string|null $templateDescription
      * @return User
@@ -318,14 +332,12 @@ class User implements UserInterface
         $this->templateDescription = $templateDescription;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="artist_id", type="string", length=255, nullable=true)
      */
     private $artistId;
-
     /**
      * @return string|null
      */
@@ -333,7 +345,6 @@ class User implements UserInterface
     {
         return $this->artistId;
     }
-
     /**
      * @param string|null $artistId
      * @return User
@@ -343,14 +354,12 @@ class User implements UserInterface
         $this->artistId = $artistId;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="localisation", type="string", length=255, nullable=true)
      */
     private $localisation;
-
     /**
      * @return string|null
      */
@@ -358,7 +367,6 @@ class User implements UserInterface
     {
         return $this->localisation;
     }
-
     /**
      * @param string|null $localisation
      * @return User
@@ -368,15 +376,12 @@ class User implements UserInterface
         $this->localisation = $localisation;
         return $this;
     }
-
-
     /**
      * @var bool
      *
      * @ORM\Column(name="is_artist", type="boolean", nullable=false)
      */
     private $isArtist = '0';
-
     /**
      * @return bool
      */
@@ -384,7 +389,6 @@ class User implements UserInterface
     {
         return $this->isArtist;
     }
-
     /**
      * @param bool $isArtist
      * @return User
@@ -394,14 +398,12 @@ class User implements UserInterface
         $this->isArtist = $isArtist;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
      */
     private $facebook;
-
     /**
      * @return string|null
      */
@@ -409,7 +411,6 @@ class User implements UserInterface
     {
         return $this->facebook;
     }
-
     /**
      * @param string|null $facebook
      * @return User
@@ -419,14 +420,12 @@ class User implements UserInterface
         $this->facebook = $facebook;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
     private $twitter;
-
     /**
      * @return string|null
      */
@@ -434,7 +433,6 @@ class User implements UserInterface
     {
         return $this->twitter;
     }
-
     /**
      * @param string|null $twitter
      * @return User
@@ -444,14 +442,12 @@ class User implements UserInterface
         $this->twitter = $twitter;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="youtube", type="string", length=255, nullable=true)
      */
     private $youtube;
-
     /**
      * @return string|null
      */
@@ -459,7 +455,6 @@ class User implements UserInterface
     {
         return $this->youtube;
     }
-
     /**
      * @param string|null $youtube
      * @return User
@@ -469,14 +464,12 @@ class User implements UserInterface
         $this->youtube = $youtube;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="spotify", type="string", length=255, nullable=true)
      */
     private $spotify;
-
     /**
      * @return string|null
      */
@@ -484,7 +477,6 @@ class User implements UserInterface
     {
         return $this->spotify;
     }
-
     /**
      * @param string|null $spotify
      * @return User
@@ -494,14 +486,12 @@ class User implements UserInterface
         $this->spotify = $spotify;
         return $this;
     }
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="soundcloud", type="string", length=255, nullable=true)
      */
     private $soundcloud;
-
     /**
      * @return string|null
      */
@@ -509,7 +499,6 @@ class User implements UserInterface
     {
         return $this->soundcloud;
     }
-
     /**
      * @param string|null $soundcloud
      * @return User
@@ -519,7 +508,6 @@ class User implements UserInterface
         $this->soundcloud = $soundcloud;
         return $this;
     }
-
     /**
      * @var Template
      *
@@ -529,7 +517,6 @@ class User implements UserInterface
      * })
      */
     private $template;
-
     /**
      * @return Template
      */
@@ -537,7 +524,6 @@ class User implements UserInterface
     {
         return $this->template;
     }
-
     /**
      * @param Template $template
      * @return User
@@ -547,7 +533,6 @@ class User implements UserInterface
         $this->template = $template;
         return $this;
     }
-
     /**
      * @var Type
      *
@@ -557,7 +542,6 @@ class User implements UserInterface
      * })
      */
     private $type;
-
     /**
      * @return String
      */
@@ -565,7 +549,6 @@ class User implements UserInterface
     {
         return $this->type;
     }
-
     /**
      * @param Type $type
      * @return User
@@ -575,7 +558,6 @@ class User implements UserInterface
         $this->type = $type;
         return $this;
     }
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -590,7 +572,6 @@ class User implements UserInterface
      * )
      */
     private $genre;
-
     /**
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -598,7 +579,6 @@ class User implements UserInterface
     {
         return $this->genre;
     }
-
     /**
      * @param \Doctrine\Common\Collections\Collection $genre
      * @return User
@@ -608,8 +588,6 @@ class User implements UserInterface
         $this->genre = $genre;
         return $this;
     }
-
-
     /**
      * Constructor
      */
@@ -617,21 +595,16 @@ class User implements UserInterface
     {
         $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-
     public function getRoles()
     {
         return [];
     }
-
     /**
      * @see UserInterface
      */
     public function getSalt()
     {
-
     }
-
     /**
      * Returns the username used to authenticate the user.
      *
@@ -641,18 +614,14 @@ class User implements UserInterface
     {
         return (string) $this->email;
     }
-
     /**
      * @see UserInterface
      */
     public function eraseCredentials()
     {
-
     }
-
     public function __toString(): string
     {
         return $this->getGenre();
     }
-
 }

@@ -1,10 +1,6 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-
-
 /**
  * Avis
  *
@@ -21,28 +17,24 @@ class Avis
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var int|null
      *
      * @ORM\Column(name="star", type="integer", nullable=true)
      */
     private $star;
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="commentaire", type="string", length=255, nullable=true)
      */
     private $commentaire;
-
     /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
-
     /**
      * @var User
      *
@@ -52,7 +44,6 @@ class Avis
      * })
      */
     private $user;
-
     /**
      * @var User
      *
@@ -62,7 +53,6 @@ class Avis
      * })
      */
     private $artist;
-
     /**
      * @return int
      */
@@ -70,7 +60,6 @@ class Avis
     {
         return $this->id;
     }
-
     /**
      * @param int $id
      * @return Avis
@@ -80,7 +69,6 @@ class Avis
         $this->id = $id;
         return $this;
     }
-
     /**
      * @return int|null
      */
@@ -88,7 +76,6 @@ class Avis
     {
         return $this->star;
     }
-
     /**
      * @param int|null $star
      * @return Avis
@@ -98,7 +85,6 @@ class Avis
         $this->star = $star;
         return $this;
     }
-
     /**
      * @return string|null
      */
@@ -106,7 +92,6 @@ class Avis
     {
         return $this->commentaire;
     }
-
     /**
      * @param string|null $commentaire
      * @return Avis
@@ -116,7 +101,6 @@ class Avis
         $this->commentaire = $commentaire;
         return $this;
     }
-
     /**
      * @return \DateTime|null
      */
@@ -124,7 +108,6 @@ class Avis
     {
         return $this->date;
     }
-
     /**
      * @param \DateTime|null $date
      * @return Avis
@@ -134,7 +117,6 @@ class Avis
         $this->date = $date;
         return $this;
     }
-
     /**
      * @return User
      */
@@ -142,7 +124,6 @@ class Avis
     {
         return $this->user;
     }
-
     /**
      * @param User $user
      * @return Avis
@@ -152,7 +133,6 @@ class Avis
         $this->user = $user;
         return $this;
     }
-
     /**
      * @return User
      */
@@ -160,7 +140,6 @@ class Avis
     {
         return $this->artist;
     }
-
     /**
      * @param User $artist
      * @return Avis
@@ -170,7 +149,4 @@ class Avis
         $this->artist = $artist;
         return $this;
     }
-
-
-
 }
