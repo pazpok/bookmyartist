@@ -19,7 +19,6 @@ class TemplateType extends AbstractType
             ->add('templateTitle', null, ['label' => 'Titre : '])
             ->add('templateImageFile', VichImageType::class, ['label' => 'Image template : ', 'required' => false])
             ->add('templateDescription', null, ['label' => 'Description : '])
-            ->add('plainPassword', PasswordType::class, ['label' => 'Mot de passe'])
             ;
     }
 

@@ -24,6 +24,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "font-awesome": "^4.7.0",
         "select2-bootstrap-css": "^1.4.6"
     }
 }

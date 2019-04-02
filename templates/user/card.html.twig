@@ -1,20 +1,20 @@
 {% if user.isArtist %}
-<article class="col-md-3">
-    <div class="artist artist-card">
-        {% if user.picture != null %}
-            <img class="artist-img-top" src="{{ asset('uploads/images/users/user/' ~ user.picture) }}" alt="{{ user.picture }}">
-        {% else %}
-            <div class="card-logo-top">
-                <i>une icone</i>
+    <a href="{{ path('artist_show', {'artistId' : user.artistId}) }}">
+        <article class="col-md-3 ml-2">
+            <div class="card">
+                {% if user.picture != null %}
+                    <img class="card-img-top" src="{{ asset('uploads/images/users/user/' ~ user.picture) }}" alt="{{ user.picture }}">
+                {% else %}
+                    <div class="card-img-top">
+                        <i class="fa fa-user fa-2x"></i>
+                    </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title text-lg-center">{{ user.artistId }}</h5>
+                    <p class="card-text">Type d'artiste : {{ user.type }}</p>
+                    <p class="card-text">Genre : {% for genre in user.genre %}  {{ genre }} {% endfor %}</p>
+                </div>
             </div>
-        {% endif %}
-        <div class="card-body">
-            <h5 class="card-title">{{ user.artistId }}</h5>
-            <ul>
-                <li>{{ user.type }}</li>
-                {#<li> {{ user.genre }}</li>#}
-            </ul>
-        </div>
-    </div>
-</article>
+        </article>
+    </a>
 {% endif %}

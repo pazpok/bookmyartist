@@ -4,12 +4,13 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Le 1er site de réservation d'artiste pour les particuliers</h1>
-    <img src="{{ asset('uploads/goodwp.com_30333_5a325c11e8e5b.jpg') }}" alt="">
+<div class="header-home">
+    <h1 class="main-title">Le 1er site de réservation d'artiste pour les particuliers</h1>
+    <img src="{{ asset('uploads/goodwp.com_30333_5a325c11e8e5b.jpg') }}" alt="" class="main-image">
 </div>
-
+<div class="d-flex container justify-content-center">
     {% for user in users %}
         {% include 'user/card.html.twig' %}
     {% endfor %}
+</div>
 {% endblock %}

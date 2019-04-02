@@ -12,13 +12,5 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ArtistController extends AbstractController
 {
-    /**
-     * @Route("/show/{pseudo}", name="artist")
-     */
-    public function index()
-    {
-        return $this->render('artist/index.html.twig', [
-            'controller_name' => 'ArtistController',
-        ]);
-    }
+
 }

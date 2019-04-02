@@ -106,7 +106,7 @@ class User implements UserInterface
         return $this;
     }
     /**
-     * @Assert\NotBlank
+     * @Assert\NotBlank(groups={"registration"})
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
@@ -520,7 +520,7 @@ class User implements UserInterface
     /**
      * @return Template
      */
-    public function getTemplate(): Template
+    public function getTemplate(): ?Template
     {
         return $this->template;
     }
@@ -543,9 +543,9 @@ class User implements UserInterface
      */
     private $type;
     /**
-     * @return String
+     * @return Type
      */
-    public function getType(): ?String
+    public function getType(): ?Type
     {
         return $this->type;
     }

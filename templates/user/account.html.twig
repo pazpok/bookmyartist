@@ -9,9 +9,10 @@
     <br>
     {% if user.isArtist %}
         <h2>Mon Template</h2>
-        {% for template in templates %}
-            <a href="{{ path('app_user_template', {'id': app.user.id, 'title': template.title}) }}">{{ template.title }}</a>
-        {% endfor %}
+        {{ form_start(tform) }}
+            {{ form_widget(tform) }}
+        <button class="btn">{{ button_label|default('Save') }}</button>
+        {{ form_end(tform) }}
     {% else %}
         <h2>Mes réservations</h2>
     {% endif %}

@@ -17,7 +17,7 @@ class DefaultController extends AbstractController
 
         return $this->render('default/homepage.html.twig', [
             'controller_name' => 'DefaultController',
-            'users' => $users
+            'users' => $users,
         ]);
     }
 }
