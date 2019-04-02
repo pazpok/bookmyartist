@@ -32,11 +32,7 @@ class UserController extends AbstractController
         if ($this->getUser()->isArtist()) {
             $form = $this->createForm(ArtistType::class, $user);
             $form->handleRequest($request);
-            $tform = $this->createForm(
-                TemplateChoiceType::class,
-                $user,
-                ['action' => $this->generateUrl('app_user_template')]
-            );
+            $tform = $this->createForm(TemplateChoiceType::class, $user, ['action' => $this->generateUrl('app_user_template')]);
             $tform->handleRequest($request);
         } else {
             $form = $this->createForm(UserType::class, $user);

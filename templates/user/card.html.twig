@@ -1,6 +1,6 @@
 {% if user.isArtist %}
-    <a href="{{ path('artist_show', {'artistId' : user.artistId}) }}">
-        <article class="col-md-3 ml-2">
+    <article class="col-md-3 ml-2">
+        <a href="{{ path('artist_show', {'artistId' : user.artistId}) }}">
             <div class="card">
                 {% if user.picture != null %}
                     <img class="card-img-top" src="{{ asset('uploads/images/users/user/' ~ user.picture) }}" alt="{{ user.picture }}">
@@ -15,6 +15,6 @@
                     <p class="card-text">Genre : {% for genre in user.genre %}  {{ genre }} {% endfor %}</p>
                 </div>
             </div>
-        </article>
-    </a>
+        </a>
+    </article>
 {% endif %}

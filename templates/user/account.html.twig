@@ -9,10 +9,7 @@
     <br>
     {% if user.isArtist %}
         <h2>Mon Template</h2>
-        {{ form_start(tform) }}
-            {{ form_widget(tform) }}
-        <button class="btn">{{ button_label|default('Save') }}</button>
-        {{ form_end(tform) }}
+        {{ include('templateuser/templateChoice.html.twig', {'button_label': 'Mettre à jour'}) }}
     {% else %}
         <h2>Mes réservations</h2>
     {% endif %}
