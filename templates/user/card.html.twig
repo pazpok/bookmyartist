@@ -10,9 +10,10 @@
                     </div>
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title text-lg-center">{{ user.artistId }}</h5>
+                    <h5 class="card-title text-xl-center">{{ user.artistId }}</h5>
                     <p class="card-text">Type d'artiste : {{ user.type }}</p>
                     <p class="card-text">Genre : {% for genre in user.genre %}  {{ genre }} {% endfor %}</p>
+                    <p class="card-text">Localisation : {{ user.localisation }}</p>
                 </div>
             </div>
         </a>

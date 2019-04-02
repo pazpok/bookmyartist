@@ -2,5 +2,6 @@
 
 {% block body %}
     <h1 class="text-center">{{ user.artistId }}</h1>
+    <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
     <img src="{{ asset('uploads/images/users/user/' ~ user.templateImage) }}" alt="">
 {% endblock %}
