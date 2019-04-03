@@ -55,4 +55,5 @@ class Template
         $this->title = $title;
         return $this;
     }
+
 }

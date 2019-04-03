@@ -44,11 +44,12 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('app_user');
         }
+        if ($this->getUser()->isArtist()) {
+            if ($tform->isSubmitted() && $tform->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
 
-        if ($tform->isSubmitted() && $tform->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('app_user_template');
+                return $this->redirectToRoute('app_user_template');
+            }
         }
 
         if ($this->getUser()->isArtist()) {
@@ -106,7 +107,7 @@ class UserController extends AbstractController
      */
     public function artistShow(User $user): Response
     {
-        $getTemplate = $user->getTemplate();
+        $getTemplate = $user->getTemplate()->getId();
 
         if ($getTemplate == 1) {
             return $this->render('artist/spotify/show.html.twig',
