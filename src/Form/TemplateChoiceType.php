@@ -14,6 +14,7 @@ class TemplateChoiceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('template', null, [
                 'class' => Template::class,

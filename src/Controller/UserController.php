@@ -109,19 +109,19 @@ class UserController extends AbstractController
     {
         $getTemplate = $user->getTemplate()->getId();
 
-        if ($getTemplate == 1) {
+        if ($getTemplate == 'Spotify') {
             return $this->render('artist/spotify/show.html.twig',
                 ['user' => $user
                 ]);
-        } elseif ($getTemplate == 2) {
+        } elseif ($getTemplate == 'YouTube') {
             return $this->render('artist/youtube/show.html.twig',
                 ['user' => $user
                 ]);
-        }elseif ($getTemplate == 3) {
+        } elseif ($getTemplate == 'Soundcloud') {
             return $this->render('artist/soundcloud/show.html.twig',
                 ['user' => $user
                 ]);
-        }else {
+        } else {
             return $this->render('artist/classique/show.html.twig',
                 ['user' => $user
                 ]);

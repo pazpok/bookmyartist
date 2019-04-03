@@ -7,9 +7,12 @@
     <h1>Bonjour {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
     {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
     <br>
-    {% if user.isArtist %}
-        <h2>Mon Template</h2>
-        {{ include('templateuser/templateChoice.html.twig', {'button_label': 'Modifier mon template'}) }}
+    {% if user.isArtist%}
+            <h2>Mon Template</h2>
+        {% if not user.template%}
+            <span class="no-template">Merci de choisir un template si vous souhaitez avoir une page artiste.</span>
+        {% endif %}
+            {{ include('templateuser/templateChoice.html.twig', {'button_label': 'Modifier mon template'}) }}
     {% else %}
         <h2>Mes réservations</h2>
     {% endif %}

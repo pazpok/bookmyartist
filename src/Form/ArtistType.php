@@ -24,7 +24,7 @@ class ArtistType extends AbstractType
             ->add('firstname', null)
             ->add('lastname', null)
             ->add('email', EmailType::class)
-            ->add('artistId', null, ['label' => 'Nom d\'artiste'])
+            ->add('artistId', null, ['label' => 'Nom d\'artiste', 'required' => true])
             ->add('type', null)
             ->add('genre', null, ['attr' => ['class' => 'genre-select']])
             ->add('localisation', null)

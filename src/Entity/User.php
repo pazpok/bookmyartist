@@ -513,7 +513,7 @@ class User implements UserInterface
      *
      * @ORM\ManyToOne(targetEntity="Template")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="template_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="template_id", referencedColumnName="id", )
      * })
      */
     private $template;
