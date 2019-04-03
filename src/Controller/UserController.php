@@ -30,9 +30,9 @@ class UserController extends AbstractController
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
 
         if ($this->getUser()->isArtist()) {
-            $form = $this->createForm(ArtistType::class, $user);
+            $form = $this->createForm(ArtistType::class, $user, ["validation_groups" => "create"]);
             $form->handleRequest($request);
-            $tform = $this->createForm(TemplateChoiceType::class, $user, ['action' => $this->generateUrl('app_user_template')]);
+            $tform = $this->createForm(TemplateChoiceType::class, $user, ["validation_groups" => "create"]);
             $tform->handleRequest($request);
         } else {
             $form = $this->createForm(UserType::class, $user);
@@ -43,6 +43,12 @@ class UserController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('app_user');
+        }
+
+        if ($tform->isSubmitted() && $tform->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('app_user_template');
         }
 
         if ($this->getUser()->isArtist()) {
@@ -70,8 +76,8 @@ class UserController extends AbstractController
     {
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
 
-        if ($this->getUser()->getId() === $this->getUser()->getId()) {
-            $form = $this->createForm(TemplateType::class, $this->getUser());
+        if ($this->getUser()->isArtist()) {
+            $form = $this->createForm(TemplateType::class, $this->getUser(), ["validation_groups" => "create"]);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -100,28 +106,24 @@ class UserController extends AbstractController
      */
     public function artistShow(User $user): Response
     {
-        return $this->render('artist/show.html.twig',
-            ['user' => $user
-        ]);
-    }
+        $getTemplate = $user->getTemplate();
 
-//    /**
-//     * @Route("/user/{id}", name="app_user", methods="GET|POST")
-//     */
-//    public function edit(Request $request, User $user): Response
-//    {
-//        $form = $this->createForm(UserType::class, $user);
-//        $form->handleRequest($request);
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $this->getDoctrine()->getManager()->flush();
-//
-//            return $this->redirectToRoute('app_user', ['id' => $user->getId()]);
-//        }
-//
-//
-//        return $this->render('user/account.html.twig', [
-//            'user' => $user,
-//            'form' => $form->createView()
-//        ]);
-//    }
+        if ($getTemplate == 1) {
+            return $this->render('artist/spotify/show.html.twig',
+                ['user' => $user
+                ]);
+        } elseif ($getTemplate == 2) {
+            return $this->render('artist/youtube/show.html.twig',
+                ['user' => $user
+                ]);
+        }elseif ($getTemplate == 3) {
+            return $this->render('artist/soundcloud/show.html.twig',
+                ['user' => $user
+                ]);
+        }else {
+            return $this->render('artist/classique/show.html.twig',
+                ['user' => $user
+                ]);
+        }
+    }
 }

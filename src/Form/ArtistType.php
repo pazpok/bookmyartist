@@ -7,8 +7,6 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -26,15 +24,15 @@ class ArtistType extends AbstractType
             ->add('firstname', null)
             ->add('lastname', null)
             ->add('email', EmailType::class)
-            ->add('artistId', null, ['label' => 'Nom d\'artiste', 'attr' => ['class' => 'artist-hide']])
-            ->add('type', null, ['attr' => ['class' => 'artist-form artist-hide'], ])
-            ->add('genre', null , ['attr' => ['class' => 'genre-select artist-hide']])
-            ->add('localisation', null, ['attr' => ['class' => 'artist-hide']])
-            ->add('facebook', null, ['attr' => ['class' => 'artist-hide']])
-            ->add('twitter', null, ['attr' => ['class' => 'artist-hide']])
-            ->add('youtube', null, ['attr' => ['class' => 'artist-hide']])
-            ->add('soundcloud', null, ['attr' => ['class' => 'artist-hide']])
-            ->add('spotify', null, ['attr' => ['class' => 'artist-hide']])
+            ->add('artistId', null, ['label' => 'Nom d\'artiste'])
+            ->add('type', null)
+            ->add('genre', null)
+            ->add('localisation', null)
+            ->add('facebook', null)
+            ->add('twitter', null)
+            ->add('youtube', null)
+            ->add('soundcloud', null)
+            ->add('spotify', null)
 
 
 //            ->add('termsAccepted', CheckboxType::class, [

@@ -3,7 +3,7 @@
         <a href="{{ path('artist_show', {'artistId' : user.artistId}) }}">
             <div class="card">
                 {% if user.picture != null %}
-                    <img class="card-img-top" src="{{ asset('uploads/images/users/user/' ~ user.picture) }}" alt="{{ user.picture }}">
+                    <img class="card-img-top" src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="{{ user.picture }}">
                 {% else %}
                     <div class="card-img-top">
                         <i class="fa fa-user fa-2x"></i>

@@ -191,7 +191,7 @@ class User implements UserInterface
     /**
      * @Vich\UploadableField(mapping="user_images", fileNameProperty="picture")
      * @var File
-     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
+     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg", groups = {"create"})
      */
     private $pictureFile;
     /**
@@ -205,7 +205,7 @@ class User implements UserInterface
      * @param File $picture
      * @throws \Exception
      */
-    public function setPictureFile(File $picture = null)
+    public function setPictureFile(File $picture = null): void
     {
         $this->pictureFile = $picture;
         if ($picture) {
@@ -284,9 +284,9 @@ class User implements UserInterface
     }
 
     /**
-     * @Vich\UploadableField(mapping="user_images", fileNameProperty="picture")
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="templateImage")
      * @var File
-     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg")
+     * @Assert\Image(mimeTypes={ "image/jpeg", "image/jpg", "image/png"  }, mimeTypesMessage = "Extension valide : .jpeg .png .jpg", groups = {"create"})
      */
     private $templateImageFile;
 

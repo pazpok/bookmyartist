@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RegisterType extends AbstractType
 {
@@ -31,7 +32,7 @@ class RegisterType extends AbstractType
                 'mapped' => false,
                 'constraints' => new isTrue()
             ])
-            ;
+        ;
     }
 
 
