@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1 class="text-center">{{ user.artistId }}</h1>
+    <h1 class="text-center">{{ user.artistId }} soundcloud</h1>
     <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
     <img src="{{ asset('uploads/images/users/' ~ user.templateImage) }}" alt="">
     <h2>{{ user.templateTitle }}</h2>

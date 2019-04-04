@@ -9,7 +9,7 @@
         {% block header %}
             <div class="d-flex flex-column justify-content-between flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
                     <div>
-                        <input type="text" name="artist-search" placeholder="Rechercher un artiste">
+                        <input type="text" name="artist-search" placeholder="Rechercher un artiste" class="test">
                         <i class="fa fa-search"></i>
                     </div>
                     <div>
@@ -26,7 +26,7 @@
                     </div>
             </div>
         {% endblock %}
-        <main class="main-content">
+        <main class="main-content container">
             {% block body %} {% endblock %}
         </main>
         {% block javascripts %}
