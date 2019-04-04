@@ -5,7 +5,7 @@
         <title>{% block title %}BookMyArtist{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
-    <body>
+    <body class="container-fluid">
         {% block header %}
             <div class="d-flex flex-column justify-content-between flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
                     <div>
@@ -26,11 +26,41 @@
                     </div>
             </div>
         {% endblock %}
-        <main class="main-content container">
+        <main class="main-content">
             {% block body %} {% endblock %}
         </main>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+        {% block footer %}
+            <footer class="row bma-footer justify-content-center mt-5">
+                <div class="col-md-3 d-flex flex-column pt-3 bma-society">
+                    <h3>Book My Artist</h3>
+                    <span>3 Place Général Giraud</span>
+                    <span>35000 RENNES</span>
+                    <div class="d-flex flex-column">
+                        <i class="fa fa-phone"> +33 2 58 54 12 14</i>
+                        <i class="fa fa-mobile-phone"> +33 6 85 47 21 44</i>
+                        <i class="fa fa-envelope-o"> contact@bookmyartist.com</i>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex flex-column pt-3 bma-link-footer">
+                    <h3>Accès rapide</h3>
+                        <a href="/">BookMyArtist qu'est ce que c'est ?</a>
+                        <a href="{{ path('app_register') }}">Créer un compte</a>
+                        <a href="/">Mentions Légales</a>
+                        <a href="/">CGU-CGV</a>
+                        <a href="/">Contact</a>
+                </div>
+                <div class="col-md-3 pt-3 bma-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Tenez-vous au courant des dernières actualités</p>
+                    <label>
+                        <input type="email" placeholder="@email">
+                    </label>
+                </div>
+            </footer>
         {% endblock %}
     </body>
 </html>

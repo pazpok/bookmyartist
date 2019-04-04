@@ -48,10 +48,6 @@ i.fa-facebook-official, .fa-twitter, .fa-youtube, .fa-instagram, .fa-lock, .fa-w
     color: $lwhite;
 }
 
-.main-image {
-    min-width: 100%;
-    height: auto;
- }
 
 .main-content {
     background-color: $lwhite;
@@ -76,4 +72,30 @@ i.fa-facebook-official, .fa-twitter, .fa-youtube, .fa-instagram, .fa-lock, .fa-w
 
 .cta-formule button {
     margin: 0 auto;
+}
+
+.bma-footer {
+    background-color: $hblue;
+}
+
+.bma-society {
+    color: $lwhite;
+}
+
+.bma-link-footer h3 {
+    color: $lwhite;
+}
+
+.bma-link-footer a {
+    color: $lwhite;
+    text-decoration: none;
+}
+
+.bma-link-footer a:hover {
+    color: $orange;
+    transition: color 0.1s;
+}
+
+.bma-newsletter {
+    color: $lwhite;
 }
