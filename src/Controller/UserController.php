@@ -8,6 +8,7 @@ use App\Form\ArtistType;
 use App\Form\TemplateChoiceType;
 use App\Form\TemplateType;
 use App\Form\UserType;
+use SpotifyWebAPI\SpotifyWebAPI;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,24 +33,23 @@ class UserController extends AbstractController
         if ($this->getUser()->isArtist()) {
             $form = $this->createForm(ArtistType::class, $user, ["validation_groups" => "create"]);
             $form->handleRequest($request);
-            $tform = $this->createForm(TemplateChoiceType::class, $user, ["validation_groups" => "create"]);
-            $tform->handleRequest($request);
         } else {
             $form = $this->createForm(UserType::class, $user);
             $form->handleRequest($request);
         }
+
+        $tform = $this->createForm(TemplateChoiceType::class, $user, ["validation_groups" => "create"]);
+        $tform->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('app_user');
         }
-        if ($this->getUser()->isArtist()) {
-            if ($tform->isSubmitted() && $tform->isValid()) {
-                $this->getDoctrine()->getManager()->flush();
+        if ($tform->isSubmitted() && $tform->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
 
-                return $this->redirectToRoute('app_user_template');
-            }
+            return $this->redirectToRoute('app_user_template');
         }
 
         if ($this->getUser()->isArtist()) {
