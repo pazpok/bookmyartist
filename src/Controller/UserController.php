@@ -78,13 +78,14 @@ class UserController extends AbstractController
     public function templateEdit(Request $request)
     {
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
-        $formules = new Formule();
+        $formule = new Formule();
+        $formule->setUser($this->getUser());
 
 
         if ($this->getUser()->isArtist()) {
             $form = $this->createForm(TemplateType::class, $this->getUser(), ["validation_groups" => "create"]);
             $form->handleRequest($request);
-            $fform = $this->createForm(FormuleType::class, $formules);
+            $fform = $this->createForm(FormuleType::class, $formule);
             $fform->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -94,7 +95,9 @@ class UserController extends AbstractController
             }
 
             if ($fform->isSubmitted() && $fform->isValid()) {
-                $this->getDoctrine()->getManager()->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($formule);
+                $em->flush();
 
                 return $this->redirectToRoute('app_user_template');
             }
@@ -103,8 +106,6 @@ class UserController extends AbstractController
                 'user' => $this->getUser(),
                 'form' => $form->createView(),
                 'templates' => $templates,
-                'fform' => $fform->createView(),
-                'formules' => $formules
             ]);
 
         } else {
