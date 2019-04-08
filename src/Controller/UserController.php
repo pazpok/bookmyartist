@@ -90,13 +90,13 @@ class UserController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
 
-                return $this->redirectToRoute('app_user', ['id' => $this->getUser()->getId()]);
+                return $this->redirectToRoute('app_user');
             }
 
             if ($fform->isSubmitted() && $fform->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
 
-                return $this->redirectToRoute('app_user_template', ['id' => $this->getUser()->getId()]);
+                return $this->redirectToRoute('app_user_template');
             }
 
             return $this->render('templateuser/edit.html.twig', [
@@ -104,6 +104,7 @@ class UserController extends AbstractController
                 'form' => $form->createView(),
                 'templates' => $templates,
                 'fform' => $fform->createView(),
+                'formules' => $formules
             ]);
 
         } else {

@@ -1,7 +1,7 @@
 {{ form_start(fform) }}
-{{ form_widget(fform) }}
-{#<ul class="tags" data-prototype="{{ form_widget(fform.formule.vars.prototype)|e('html_attr') }}">#}
-    {#...#}
-{#</ul>#}
-<button class="btn">{{ button_label|default('Save') }}</button>
+    {% if fform.formules is defined %}
+    <ul class="formules" data-prototype="{{ form_widget(fform.formules.vars.prototype) }}">
+    </ul>
+    {% endif %}
+    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(fform) }}

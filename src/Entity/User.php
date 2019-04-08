@@ -592,7 +592,17 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity="Formule", mappedBy="user")
      */
-    protected $formules;
+    private $formules;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -606,33 +616,32 @@ class User implements UserInterface
      * @param mixed $formules
      * @return User
      */
-    public function setFormule($formules)
+    public function setFormules(ArrayCollection $formules)
     {
         $this->formules = $formules;
         return $this;
     }
 
     /**
-     *
-     * @param Formule $formule
+     * @param Formule $formules
      *
      * @return User
      */
-    public function addFormule(Formule $formule)
+    public function addFormule(Formule $formules)
     {
-        $this->formules[] = $formule;
-        $formule->setUser($this);
+        $this->formules[] = $formules;
+        $formules->setUser($this);
         return $this;
     }
 
     /**
-     * Constructor
+     * @param Formule $formules
      */
-    public function __construct()
+    public function removeFormule(Formule $formules)
     {
-        $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formules->removeElement($formules);
     }
+
     public function getRoles()
     {
         return [];
