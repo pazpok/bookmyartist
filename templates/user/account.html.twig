@@ -6,6 +6,7 @@
 <div class="example-wrapper">
     <h1>Bonjour {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
     {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
     <br>
     {% if user.isArtist%}
             <h2>Mon Template</h2>

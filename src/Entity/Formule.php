@@ -56,7 +56,7 @@ class Formule
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="formule")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -81,7 +81,7 @@ class Formule
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -97,7 +97,7 @@ class Formule
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -113,7 +113,7 @@ class Formule
     /**
      * @return int
      */
-    public function getNbMusiciens(): int
+    public function getNbMusiciens(): ?int
     {
         return $this->nbMusiciens;
     }
@@ -129,7 +129,7 @@ class Formule
     /**
      * @return \DateTime
      */
-    public function getTpsInstall(): \DateTime
+    public function getTpsInstall(): ?\DateTime
     {
         return $this->tpsInstall;
     }
@@ -145,7 +145,7 @@ class Formule
     /**
      * @return \DateTime
      */
-    public function getTpsEvent(): \DateTime
+    public function getTpsEvent(): ?\DateTime
     {
         return $this->tpsEvent;
     }
@@ -161,7 +161,7 @@ class Formule
     /**
      * @return int
      */
-    public function getPrice(): int
+    public function getPrice(): ?int
     {
         return $this->price;
     }

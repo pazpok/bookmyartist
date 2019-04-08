@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Formule;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Form\ArtistType;
+use App\Form\FormuleType;
 use App\Form\TemplateChoiceType;
 use App\Form\TemplateType;
 use App\Form\UserType;
@@ -76,10 +78,14 @@ class UserController extends AbstractController
     public function templateEdit(Request $request)
     {
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
+        $formules = new Formule();
+
 
         if ($this->getUser()->isArtist()) {
             $form = $this->createForm(TemplateType::class, $this->getUser(), ["validation_groups" => "create"]);
             $form->handleRequest($request);
+            $fform = $this->createForm(FormuleType::class, $formules);
+            $fform->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
@@ -87,10 +93,17 @@ class UserController extends AbstractController
                 return $this->redirectToRoute('app_user', ['id' => $this->getUser()->getId()]);
             }
 
+            if ($fform->isSubmitted() && $fform->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('app_user_template', ['id' => $this->getUser()->getId()]);
+            }
+
             return $this->render('templateuser/edit.html.twig', [
                 'user' => $this->getUser(),
                 'form' => $form->createView(),
-                'templates' => $templates
+                'templates' => $templates,
+                'fform' => $fform->createView(),
             ]);
 
         } else {

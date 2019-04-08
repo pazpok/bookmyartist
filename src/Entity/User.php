@@ -588,12 +588,50 @@ class User implements UserInterface
         $this->genre = $genre;
         return $this;
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Formule", mappedBy="user")
+     */
+    protected $formules;
+
+    /**
+     * @return mixed
+     */
+    public function getFormules()
+    {
+        return $this->formules;
+    }
+
+    /**
+     * @param mixed $formules
+     * @return User
+     */
+    public function setFormule($formules)
+    {
+        $this->formules = $formules;
+        return $this;
+    }
+
+    /**
+     *
+     * @param Formule $formule
+     *
+     * @return User
+     */
+    public function addFormule(Formule $formule)
+    {
+        $this->formules[] = $formule;
+        $formule->setUser($this);
+        return $this;
+    }
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
     }
     public function getRoles()
     {
