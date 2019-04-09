@@ -10,7 +10,7 @@ use App\Form\FormuleType;
 use App\Form\TemplateChoiceType;
 use App\Form\TemplateType;
 use App\Form\UserType;
-use SpotifyWebAPI\SpotifyWebAPI;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,33 +77,23 @@ class UserController extends AbstractController
      */
     public function templateEdit(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
-        $formule = new Formule();
-        $formule->setUser($this->getUser());
 
-
-        if ($this->getUser()->isArtist()) {
-            $form = $this->createForm(TemplateType::class, $this->getUser(), ["validation_groups" => "create"]);
+        if ($user->isArtist()) {
+            $form = $this->createForm(TemplateType::class, $user, ["validation_groups" => "create"]);
             $form->handleRequest($request);
-            $fform = $this->createForm(FormuleType::class, $formule);
-            $fform->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                $this->getDoctrine()->getManager()->flush();
+                $em->persist($user);
+                $em->flush();
 
                 return $this->redirectToRoute('app_user');
             }
 
-            if ($fform->isSubmitted() && $fform->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($formule);
-                $em->flush();
-
-                return $this->redirectToRoute('app_user_template');
-            }
-
             return $this->render('templateuser/edit.html.twig', [
-                'user' => $this->getUser(),
+                'user' => $user,
                 'form' => $form->createView(),
                 'templates' => $templates,
             ]);

@@ -1,6 +1,7 @@
 <?php
 namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -590,7 +591,8 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Formule", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Formule", mappedBy="user", cascade={"persist"})
+     *
      */
     private $formules;
 
@@ -600,46 +602,46 @@ class User implements UserInterface
      */
     public function __construct()
     {
-        $this->genre = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->genre = new ArrayCollection();
+        $this->formules = new ArrayCollection();
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection|Formule[]
      */
-    public function getFormules()
+    public function getFormules(): Collection
     {
         return $this->formules;
     }
 
-    /**
-     * @param mixed $formules
-     * @return User
-     */
-    public function setFormules(ArrayCollection $formules)
-    {
-        $this->formules = $formules;
-        return $this;
-    }
+//    /**
+//     * @param mixed $formules
+//     * @return User
+//     */
+//    public function setFormules(ArrayCollection $formules)
+//    {
+//        $this->formules = $formules;
+//        return $this;
+//    }
 
     /**
-     * @param Formule $formules
+     * @param Formule $formule
      *
      * @return User
      */
-    public function addFormule(Formule $formules)
+    public function addFormule(Formule $formule)
     {
-        $this->formules[] = $formules;
-        $formules->setUser($this);
+        $this->formules[] = $formule;
+        $formule->setUser($this);
         return $this;
     }
 
     /**
-     * @param Formule $formules
+     * @param Formule $formule
      */
-    public function removeFormule(Formule $formules)
+    public function removeFormule(Formule $formule)
     {
-        $this->formules->removeElement($formules);
+        $this->formules->removeElement($formule);
     }
 
     public function getRoles()

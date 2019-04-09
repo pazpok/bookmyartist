@@ -192,6 +192,7 @@ class Formule implements \ArrayAccess
     }
 
 
+
     /**
      * Whether a offset exists
      * @link https://php.net/manual/en/arrayaccess.offsetexists.php
