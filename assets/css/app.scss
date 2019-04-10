@@ -99,3 +99,15 @@ i.fa-facebook-official, .fa-twitter, .fa-youtube, .fa-instagram, .fa-lock, .fa-w
 .bma-newsletter {
     color: $lwhite;
 }
+
+#template_formules {
+    display: flex;
+}
+
+#template_formules > div {
+    display: flex;
+}
+
+.formules {
+    display: flex;
+}

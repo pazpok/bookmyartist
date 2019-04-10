@@ -19,12 +19,12 @@ class FormuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('nbMusiciens', IntegerType::class)
-            ->add('tpsInstall', TimeType::class)
-            ->add('tpsEvent', TimeType::class)
-            ->add('price', IntegerType::class)
+            ->add('title', TextType::class, ['attr' => ['class' => 'form-control']])
+            ->add('description', TextareaType::class, ['attr' => ['class' => 'form-control']])
+            ->add('nbMusiciens', IntegerType::class, ['attr' => ['class' => 'form-control']])
+            ->add('tpsInstall', TimeType::class, ['attr' => ['class' => 'form-control']])
+            ->add('tpsEvent', TimeType::class, ['attr' => ['class' => 'form-control']])
+            ->add('price', IntegerType::class, ['attr' => ['class' => 'form-control']])
         ;
     }
 

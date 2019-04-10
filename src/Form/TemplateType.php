@@ -18,7 +18,7 @@ class TemplateType extends AbstractType
 
         $builder
             ->add('templateTitle', null, ['label' => 'Titre : '])
-            ->add('templateImageFile', VichImageType::class, ['label' => 'Image template : ', 'required' => false])
+            ->add('templateImageFile', VichImageType::class, ['label' => 'Image template : ', 'required' => false, 'attr' => ['class' => 'form-control-file']])
             ->add('templateDescription', null, ['label' => 'Description : '])
             ->add('formules', CollectionType::class, [
                 'entry_type' => FormuleType::class,
@@ -27,7 +27,6 @@ class TemplateType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
             ])
-            ->add('save', SubmitType::class)
         ;
     }
 

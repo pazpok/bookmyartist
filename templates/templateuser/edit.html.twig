@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
-
 {% block body %}
-    <div class="example-wrapper">
-    <h1>Bonjour {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
-    {{ include('templateuser/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-    <br>
-    {#{{ include('formule/_form.html.twig', {'button_label': 'Ajouter Formule'}) }}#}
+    <div class="container">
+        <div class="example-wrapper">
+        <h1>Bonjour {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
+        {{ include('templateuser/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        <br>
+    </div>
 {% endblock %}
