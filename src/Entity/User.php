@@ -31,6 +31,7 @@ class User implements UserInterface
     {
         return $this->id;
     }
+
     /**
      * @param int $id
      * @return User
@@ -607,39 +608,39 @@ class User implements UserInterface
     }
 
     /**
-     * @return ArrayCollection|Formule[]
+     * @return Collection|Formule[]
      */
-    public function getFormules(): Collection
+    public function getFormules(): \Doctrine\Common\Collections\Collection
     {
         return $this->formules;
     }
 
-//    /**
-//     * @param mixed $formules
-//     * @return User
-//     */
-//    public function setFormules(ArrayCollection $formules)
-//    {
-//        $this->formules = $formules;
-//        return $this;
-//    }
+    /**
+     * @param mixed $formules
+     * @return User
+     */
+    public function setFormules(Collection $formules)
+    {
+        $this->formules = $formules;
+        return $this;
+    }
 
     /**
      * @param Formule $formule
      *
      * @return User
      */
-    public function addFormule(Formule $formule)
+    public function addFormules(Formule $formule)
     {
-        $this->formules[] = $formule;
         $formule->setUser($this);
+        $this->formules[] = $formule;
         return $this;
     }
 
     /**
      * @param Formule $formule
      */
-    public function removeFormule(Formule $formule)
+    public function removeFormules(Formule $formule)
     {
         $this->formules->removeElement($formule);
     }

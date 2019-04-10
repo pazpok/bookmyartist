@@ -25,7 +25,7 @@ class TemplateType extends AbstractType
             ->add('templateDescription', null, ['label' => 'Description : '])
             ->add('formules', CollectionType::class, [
                 'entry_type' => FormuleType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => ['data_class' => Formule::class],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'prototype' => true,

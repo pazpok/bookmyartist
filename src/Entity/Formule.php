@@ -69,6 +69,7 @@ class Formule implements \ArrayAccess
     {
         return $this->id;
     }
+
     /**
      * @param int $id
      * @return Formule
