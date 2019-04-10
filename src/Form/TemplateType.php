@@ -4,13 +4,10 @@
 namespace App\Form;
 
 
-use App\Entity\Formule;
-use App\Entity\Template;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -25,13 +22,12 @@ class TemplateType extends AbstractType
             ->add('templateDescription', null, ['label' => 'Description : '])
             ->add('formules', CollectionType::class, [
                 'entry_type' => FormuleType::class,
-                'entry_options' => ['data_class' => Formule::class],
+                'entry_options' => ['label' => false],
                 'allow_add' => true,
-                'allow_delete' => true,
                 'prototype' => true,
                 'by_reference' => false,
             ])
-
+            ->add('save', SubmitType::class)
         ;
     }
 
@@ -39,7 +35,7 @@ class TemplateType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'data-class' => User::class,
+                'data_class' => User::class,
             ]);
 
     }

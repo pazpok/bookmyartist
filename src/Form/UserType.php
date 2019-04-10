@@ -28,7 +28,7 @@ class UserType extends AbstractType
     {
         $resolver
             ->setDefaults([
-           'data-class' => User::class,
+           'data_class' => User::class,
         ]);
 
     }

@@ -610,7 +610,7 @@ class User implements UserInterface
     /**
      * @return Collection|Formule[]
      */
-    public function getFormules(): \Doctrine\Common\Collections\Collection
+    public function getFormules(): Collection
     {
         return $this->formules;
     }
@@ -630,17 +630,17 @@ class User implements UserInterface
      *
      * @return User
      */
-    public function addFormules(Formule $formule)
+    public function addFormule(Formule $formule)
     {
-        $formule->setUser($this);
         $this->formules[] = $formule;
+        $formule->setUser($this);
         return $this;
     }
 
     /**
      * @param Formule $formule
      */
-    public function removeFormules(Formule $formule)
+    public function removeFormule(Formule $formule)
     {
         $this->formules->removeElement($formule);
     }

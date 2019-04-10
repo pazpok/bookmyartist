@@ -25,7 +25,6 @@ class FormuleType extends AbstractType
             ->add('tpsInstall', TimeType::class)
             ->add('tpsEvent', TimeType::class)
             ->add('price', IntegerType::class)
-            ->add('save', SubmitType::class)
         ;
     }
 
@@ -33,7 +32,7 @@ class FormuleType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'data-class' => Formule::class,
+                'data_class' => Formule::class,
             ]);
 
     }

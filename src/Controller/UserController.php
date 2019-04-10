@@ -77,15 +77,16 @@ class UserController extends AbstractController
      */
     public function templateEdit(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
 
         if ($user->isArtist()) {
             $form = $this->createForm(TemplateType::class, $user, ["validation_groups" => "create"]);
+//            dump($request);die;
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
 
