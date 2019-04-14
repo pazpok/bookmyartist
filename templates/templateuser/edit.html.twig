@@ -3,7 +3,17 @@
     <div class="container">
         <div class="example-wrapper">
         <h1>Bonjour {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
-        {{ include('templateuser/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+            <div class="form-inline">
+                {{ form_start(form) }}
+                <div class="form-group-row">
+                    <ul class="formules" data-prototype="{{ form_widget(form.formules.vars.prototype)|e('html_attr') }}">
+                        {#{% for formule in form.formules %}#}
+                        {#<li>{{ form_row(formule.title) }}</li>#}
+                        {#{% endfor %}#}
+                    </ul>
+                </div>
+                {{ form_end(form) }}
+            </div>
         <br>
     </div>
 {% endblock %}

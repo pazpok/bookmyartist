@@ -1,9 +1,121 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1 class="text-center">{{ user.artistId }} youtube</h1>
-    <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
-    <img src="{{ asset('uploads/images/users/' ~ user.templateImage) }}" alt="">
-    <h2>{{ user.templateTitle }}</h2>
-    <p>{{ user.templateDescription }}</p>
+    <div class="container-fluid">
+        <div class="mb-5">
+            <h1 class="text-center">{{ user.artistId }} youtube</h1>
+            <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
+        </div>
+        <div class="mb-5 text-center">
+                <img src="{{ asset('uploads/images/users/' ~ user.templateImage) }}" alt="">
+                <h2 class="">{{ user.templateTitle }}</h2>
+                <p>{{ user.templateDescription }}</p>
+        </div>
+        <div class="m-auto mb-5 mt-5 d-flex justify-content-center">
+            <div class="m-2 embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/VPRjCeoBqrI" class="embed-responsive-item" allowfullscreen></iframe></div>
+            <div class="m-2 embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/L3wKzyIN1yk" class="embed-responsive-item" allowfullscreen></iframe></div>
+            <div class="m-2 embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/pXRviuL6vMY" class="embed-responsive-item" allowfullscreen></iframe></div>
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center"><a href="{{ user.facebook }}"><i class="fa fa-facebook-official fa-2x"></i></a></div>
+            <div class="col text-center"><a href="{{ user.twitter }}"><i class="fa fa-twitter fa-2x"></i></a></div>
+            <div class="col text-center"><a href="{{ user.youtube }}"><i class="fa fa-youtube fa-2x"></i></a></div>
+            <div class="col text-center"><a href="{{ user.soundcloud }}"><i class="fa fa-instagram fa-2x"></i></a></div>
+        </div>
+
+        <div class="row justify-content-around">
+            <div class="border col-md-6 mt-5 ">
+                <h3 class="text-center">Formule {{ user.artistId }}</h3>
+                <div class="border row">
+                    <div class="col">
+                        <h4>Formule 1</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam delectus ducimus laboriosam possimus quos, voluptatum!</p>
+                        <p>Durée évènement : 1h15min | Temps installation : 30min</p>
+                    </div>
+                    <div class="col-xs-1 align-self-center">
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                        <h5>1050€</h5>
+                    </div>
+                </div>
+                <div class="border row">
+                    <div class="col">
+                        <h4>Formule 2</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam delectus ducimus laboriosam possimus quos, voluptatum!</p>
+                        <p>Durée évènement : 1h15min | Temps installation : 30min</p>
+                    </div>
+                    <div class="col-xs-1 align-self-center flex-column">
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                        <h5>1050€</h5>
+                    </div>
+                </div>
+                <div class="border row">
+                    <div class="col">
+                        <h4>Formule 3</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam delectus ducimus laboriosam possimus quos, voluptatum!</p>
+                        <p>Durée évènement : 1h15min | Temps installation : 30min</p>
+                    </div>
+                    <div class="col-xs-1 align-self-center">
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                        <h5>1050€</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 border mt-5 d-flex align-items-center">
+                <ul class="mt-4 d-inline">
+                    <li class="mb-4"><i class="fa fa-lock fa-2x"></i> Paiment 100% sécurisé</li>
+                    <li class="mb-4"><i class="fa fa-warning fa-2x"></i> Assurance en cas d'annulation</li>
+                    <li class="mb-4"><i class="fa fa-volume-control-phone fa-2x"></i> En lien direct avec l'artiste</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cta-formule d-flex mb-5">
+            <button class="btn">Valider</button>
+        </div>
+        <h4 class="text-center">Avis utilisateurs</h4>
+        <div class="d-flex justify-content-center">
+            <div class="border row col-md-7">
+                <div class="col-md-2 mt-4">
+                    <img src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="" class="rounded-circle">
+                </div>
+                <div class="col">
+                    <div class="border mt-4">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolor ex iusto nemo recusandae!</p>
+                    </div>
+                    <p>Le 25/03/2019 à 1h11</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="border row col-md-7">
+                <div class="col-md-2 mt-4">
+                    <img src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="" class="rounded-circle">
+                </div>
+                <div class="col">
+                    <div class="border mt-4">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolor ex iusto nemo recusandae!</p>
+                    </div>
+                    <p>Le 25/03/2019 à 1h11</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="border row col-md-7">
+                <div class="col-md-2 mt-4">
+                    <img src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="" class="rounded-circle">
+                </div>
+                <div class="col">
+                    <div class="border mt-4">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolor ex iusto nemo recusandae!</p>
+                    </div>
+                    <p>Le 25/03/2019 à 1h11</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

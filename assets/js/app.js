@@ -17,6 +17,7 @@ var $collectionHolder;
 // setup an "add a tag" link
 var $addFormuleButton = $('<button type="button" class="add_formule_link">Ajouter une formule</button>');
 var $newLinkLi = $('<li></li>').append($addFormuleButton);
+$addFormuleButton.addClass('btn btn-outline-success');
 
 $(document).ready(function() {
     // Get the ul that holds the collection of tags
@@ -71,4 +72,6 @@ function addFormuleFormDeleteLink($formuleFormLi) {
         // remove the li for the tag form
         $formuleFormLi.remove();
     });
+
+    $removeFormButton.addClass('btn btn btn-outline-danger')
 }

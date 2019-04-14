@@ -17,9 +17,9 @@ class TemplateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
 
         $builder
-            ->add('templateTitle', null, ['label' => 'Titre : '])
+            ->add('templateTitle', null, ['label' => 'Titre : ', 'attr' => ['class' => 'form-control']])
             ->add('templateImageFile', VichImageType::class, ['label' => 'Image template : ', 'required' => false, 'attr' => ['class' => 'form-control-file']])
-            ->add('templateDescription', null, ['label' => 'Description : '])
+            ->add('templateDescription', null, ['label' => 'Description : ', 'attr' => ['class' => 'form-control']])
             ->add('formules', CollectionType::class, [
                 'entry_type' => FormuleType::class,
                 'entry_options' => ['label' => false],
@@ -27,6 +27,7 @@ class TemplateType extends AbstractType
                 'prototype' => true,
                 'by_reference' => false,
             ])
+            ->add('save', SubmitType::class, ['attr' => ['class' => 'btn btn-outline-success']])
         ;
     }
 
