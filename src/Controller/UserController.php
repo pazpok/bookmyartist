@@ -114,22 +114,23 @@ class UserController extends AbstractController
     public function artistShow(User $user): Response
     {
         $getTemplate = $user->getTemplate()->getId();
+        $formules = $this->getDoctrine()->getRepository(Formule::class)->findAll();
 
         if ($getTemplate == 1) {
             return $this->render('artist/spotify/show.html.twig',
-                ['user' => $user
+                ['user' => $user, 'formules' => $formules
                 ]);
         } elseif ($getTemplate == 2) {
             return $this->render('artist/youtube/show.html.twig',
-                ['user' => $user
+                ['user' => $user, 'formules' => $formules
                 ]);
         } elseif ($getTemplate == 3) {
             return $this->render('artist/soundcloud/show.html.twig',
-                ['user' => $user
+                ['user' => $user, 'formules' => $formules
                 ]);
         } else {
             return $this->render('artist/classique/show.html.twig',
-                ['user' => $user
+                ['user' => $user, 'formules' => $formules
                 ]);
         }
     }

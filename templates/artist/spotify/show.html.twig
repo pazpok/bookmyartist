@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="mb-5">
             <h1 class="text-center">{{ user.artistId }} spotify</h1>
             <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
@@ -36,45 +36,21 @@
         <div class="row justify-content-around">
             <div class="border col-md-6 mt-5 ">
                 <h3 class="text-center">Formule {{ user.artistId }}</h3>
-                <div class="border row">
-                    <div class="col">
-                        <h4>Formule 1</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam delectus ducimus laboriosam possimus quos, voluptatum!</p>
-                        <p>Durée évènement : 1h15min | Temps installation : 30min</p>
+                {% for formule in formules %}
+                    <div class="border row">
+                        <div class="col">
+                            <h4>{{ formule.title }}</h4>
+                            <p>{{ formule.description }}</p>
+                            <p>Durée évènement : {{ formule.tpsEvent|date('H:i') }} | Temps installation : {{ formule.tpsInstall|date('H:i') }}</p>
+                        </div>
+                        <div class="col-xs-1 align-self-center">
+                            <label>
+                                <input type="checkbox">
+                            </label>
+                            <h5>{{ formule.price }}</h5>
+                        </div>
                     </div>
-                    <div class="col-xs-1 align-self-center">
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                        <h5>1050€</h5>
-                    </div>
-                </div>
-                <div class="border row">
-                    <div class="col">
-                        <h4>Formule 2</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam delectus ducimus laboriosam possimus quos, voluptatum!</p>
-                        <p>Durée évènement : 1h15min | Temps installation : 30min</p>
-                    </div>
-                    <div class="col-xs-1 align-self-center flex-column">
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                        <h5>1050€</h5>
-                    </div>
-                </div>
-                <div class="border row">
-                    <div class="col">
-                        <h4>Formule 3</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam delectus ducimus laboriosam possimus quos, voluptatum!</p>
-                        <p>Durée évènement : 1h15min | Temps installation : 30min</p>
-                    </div>
-                    <div class="col-xs-1 align-self-center">
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                        <h5>1050€</h5>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <div class="col-md-3 border mt-5 d-flex align-items-center">
                 <ul class="mt-4 d-inline">
