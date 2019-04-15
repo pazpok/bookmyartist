@@ -2,15 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Formule;
+use App\Entity\Avis;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Form\ArtistType;
-use App\Form\FormuleType;
 use App\Form\TemplateChoiceType;
 use App\Form\TemplateType;
 use App\Form\UserType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -114,23 +112,24 @@ class UserController extends AbstractController
     public function artistShow(User $user): Response
     {
         $getTemplate = $user->getTemplate()->getId();
-        $formules = $this->getDoctrine()->getRepository(Formule::class)->findAll();
+        $formules = $user->getFormules();
+        $comments = $this->getDoctrine()->getRepository(Avis::class)->findBy(['artist' => $user]);
 
         if ($getTemplate == 1) {
             return $this->render('artist/spotify/show.html.twig',
-                ['user' => $user, 'formules' => $formules
+                ['user' => $user, 'formules' => $formules, 'comments' => $comments
                 ]);
         } elseif ($getTemplate == 2) {
             return $this->render('artist/youtube/show.html.twig',
-                ['user' => $user, 'formules' => $formules
+                ['user' => $user, 'formules' => $formules, 'comments' => $comments
                 ]);
         } elseif ($getTemplate == 3) {
             return $this->render('artist/soundcloud/show.html.twig',
-                ['user' => $user, 'formules' => $formules
+                ['user' => $user, 'formules' => $formules, 'comments' => $comments
                 ]);
         } else {
             return $this->render('artist/classique/show.html.twig',
-                ['user' => $user, 'formules' => $formules
+                ['user' => $user, 'formules' => $formules, 'comments' => $comments
                 ]);
         }
     }

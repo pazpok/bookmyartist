@@ -149,4 +149,13 @@ class Avis
         $this->artist = $artist;
         return $this;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setDate(new \DateTime());
+    }
+
 }
