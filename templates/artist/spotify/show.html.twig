@@ -65,17 +65,14 @@
         </div>
         <h4 class="text-center">Avis utilisateurs</h4>
         <div class="d-flex justify-content-center">
-            <div class="border row col-md-7">
-                <div class="col-md-2 mt-4">
+            <div class="border">
                 {% if app.user %}
                     {% if app.user.picture != null %}
                         <img src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="" class="rounded-circle">
                         <span class="btn btn-outline-primary">{{ app.user.email }}</span>
                     {% else %}
-                        <div class="card-logo-top" style="">
                             <i class="fa fa-user fa-5x mr-3 " style="color: #eb6864;"></i>
                             <span class="btn btn-outline-primary">{{ app.user.email }}</span>
-                        </div>
                     {% endif %}
                     {{ render(controller('App\\Controller\\AvisController:new', {'id': user.id}))}}
                 {% else %}
@@ -87,13 +84,13 @@
                 {% endif %}
                 {% for comment in comments %}
                     {% if comment.user.picture != null %}
+                    <div class="col-md-2 mt-4">
                         <img src="{{ asset('uploads/images/users/' ~ comment.user.picture) }}" alt="" class="rounded-circle">
                         <span class="btn btn-outline-primary">{{ comment.user.email }}</span>
+
                     {% else %}
-                        <div class="card-logo-top" style="">
-                            <i class="fa fa-user fa-5x mr-3 " style="color: #eb6864;"></i>
+                            <i class="fa fa-user fa-3x mr-3 " style="color: #eb6864;"></i>
                             <span class="btn btn-outline-primary">{{ comment.user.email }}</span>
-                        </div>
                     {% endif %}
                     <div class="col">
                         <div class="border mt-4">
