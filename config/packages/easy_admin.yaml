@@ -1,0 +1,13 @@
+easy_admin:
+    site_name: '<img src="public/uploads/logo.svg" />'
+    entities:
+        Avis:
+            class: App\Entity\Avis
+        Formule:
+            class: App\Entity\Formule
+        User:
+            class: App\Entity\User
+        Genre:
+            class: Genre
+        Reservation:
+            class: Type
