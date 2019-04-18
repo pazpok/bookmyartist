@@ -8,6 +8,6 @@ easy_admin:
         User:
             class: App\Entity\User
         Genre:
-            class: Genre
-        Reservation:
-            class: Type
+            class: App\Entity\Genre
+        Type:
+            class: App\Entity\Type
