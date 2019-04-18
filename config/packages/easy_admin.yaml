@@ -1,13 +1,66 @@
 easy_admin:
-    site_name: '<img src="public/uploads/logo.svg" />'
+    design:
+        brand_color: '#1695A3'
+        assets:
+            favicon: 'admin/images/favicon.png'
+            css:
+                - 'bundles/easyadmin/bootstrap-all.css'
+            js:
+                - 'bundles/easyadmin/bootstrap-all.js'
+    site_name: '<img src="images/logo.png" />'
+    list:
+        actions:
+            - { name: 'search', label: 'Rechercher' }
+            - { name: 'new', label: 'Ajouter' }
+            - { name: 'edit', label: 'Modifier' }
+            - { name: 'delete', label: 'Supprimer' }
     entities:
         Avis:
             class: App\Entity\Avis
+            label: 'Avis'
+            list:
+                title: 'Liste des avis'
+            new:
+                title: 'Ajouter un nouvel avis'
+            edit:
+                title: 'Modifier un avis'
         Formule:
             class: App\Entity\Formule
+            list:
+                title: 'Liste des formules'
+            new:
+                title: 'Ajouter une nouvelle formule'
+            edit:
+                title: 'Modifier une formule'
         User:
             class: App\Entity\User
+            list:
+                title: 'Liste des utilisateur'
+            new:
+                title: 'Ajouter un nouvel utilisateur'
+            edit:
+                title: 'Modifier un utilisateur'
         Genre:
             class: App\Entity\Genre
+            list:
+                title: 'Liste des genre'
+            new:
+                title: 'Ajouter un nouveau genre'
+            edit:
+                title: 'Modifier un genre'
         Type:
             class: App\Entity\Type
+            list:
+                title: 'Liste des types'
+            new:
+                title: 'Ajouter un nouveau type'
+            edit:
+                title: 'Modifier un type'
+        Template:
+            class: App\Entity\Template
+            list:
+                title: 'Liste des templates'
+            new:
+                title: 'Ajouter une nouvelle formule'
+            edit:
+                title: 'Modifier une formule'

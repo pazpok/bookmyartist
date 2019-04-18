@@ -6,6 +6,7 @@
 parameters:
     locale: 'en'
     app.path.uploads_dir: uploads/images/users
+    app.path.assets_dir: assets/images
 
 services:
     # default configuration for services in *this* file
