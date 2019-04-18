@@ -27,7 +27,7 @@ class Type
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -43,7 +43,7 @@ class Type
     /**
      * @return string
      */
-    public function getLibelle(): string
+    public function getLibelle(): ?string
     {
         return $this->libelle;
     }

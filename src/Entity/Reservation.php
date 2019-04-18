@@ -50,7 +50,7 @@ class Reservation
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -66,7 +66,7 @@ class Reservation
     /**
      * @return \DateTime
      */
-    public function getDateStart(): \DateTime
+    public function getDateStart(): ?\DateTime
     {
         return $this->dateStart;
     }
@@ -82,7 +82,7 @@ class Reservation
     /**
      * @return \DateTime
      */
-    public function getDateEnd(): \DateTime
+    public function getDateEnd(): ?\DateTime
     {
         return $this->dateEnd;
     }
@@ -98,7 +98,7 @@ class Reservation
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -114,7 +114,7 @@ class Reservation
     /**
      * @return User
      */
-    public function getArtist(): User
+    public function getArtist(): ?User
     {
         return $this->artist;
     }

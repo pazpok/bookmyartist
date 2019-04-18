@@ -1,5 +1,7 @@
 <?php
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * Genre
@@ -32,7 +34,7 @@ class Genre
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -48,7 +50,7 @@ class Genre
     /**
      * @return string
      */
-    public function getLibelle(): string
+    public function getLibelle(): ?string
     {
         return $this->libelle;
     }
@@ -62,17 +64,17 @@ class Genre
         return $this;
     }
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getUser(): \Doctrine\Common\Collections\Collection
+    public function getUser(): Collection
     {
         return $this->user;
     }
     /**
-     * @param \Doctrine\Common\Collections\Collection $user
+     * @param Collection $user
      * @return Genre
      */
-    public function setUser(\Doctrine\Common\Collections\Collection $user): Genre
+    public function setUser(Collection $user): Genre
     {
         $this->user = $user;
         return $this;
@@ -82,7 +84,7 @@ class Genre
      */
     public function __construct()
     {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user = new ArrayCollection();
     }
     public function __toString()
     {

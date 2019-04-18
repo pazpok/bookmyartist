@@ -56,7 +56,7 @@ class Avis
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -120,7 +120,7 @@ class Avis
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -136,7 +136,7 @@ class Avis
     /**
      * @return User
      */
-    public function getArtist(): User
+    public function getArtist(): ?User
     {
         return $this->artist;
     }

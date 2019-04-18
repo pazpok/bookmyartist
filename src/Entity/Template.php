@@ -26,7 +26,7 @@ class Template
     /**
      * @return int
      */
-    public function getId() : int
+    public function getId() : ?int
     {
         return $this->id;
     }
@@ -42,7 +42,7 @@ class Template
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
