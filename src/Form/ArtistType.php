@@ -48,7 +48,7 @@ class ArtistType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'data_class' => null,
+                'data_class' => User::class,
             ]);
 
     }

@@ -3,7 +3,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use mysql_xdevapi\Exception;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -562,7 +561,7 @@ class User implements UserInterface
         return $this;
     }
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="Genre", inversedBy="user")
      * @ORM\JoinTable(name="user_has_genre",
@@ -576,17 +575,17 @@ class User implements UserInterface
      */
     private $genre;
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getGenre(): \Doctrine\Common\Collections\Collection
+    public function getGenre(): Collection
     {
         return $this->genre;
     }
     /**
-     * @param \Doctrine\Common\Collections\Collection $genre
+     * @param Collection $genre
      * @return User
      */
-    public function setGenre(\Doctrine\Common\Collections\Collection $genre): User
+    public function setGenre(Collection $genre): User
     {
         $this->genre = $genre;
         return $this;
