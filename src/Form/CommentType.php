@@ -15,7 +15,7 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('star', null, ['label' => 'Étoiles'])
+            ->add('star', null, ['label' => 'Étoiles', 'attr' => ['class' => 'star']])
             ->add('commentaire', null, ['label' => 'Commentaire'])
             ->add('Save', SubmitType::class)
         ;
