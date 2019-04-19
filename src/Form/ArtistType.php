@@ -36,11 +36,6 @@ class ArtistType extends AbstractType
             ->add('soundcloud', null)
             ->add('spotify', null)
 
-
-//            ->add('termsAccepted', CheckboxType::class, [
-//                'mapped' => false,
-//                'constraints' => new isTrue()
-//            ])
         ;
     }
 

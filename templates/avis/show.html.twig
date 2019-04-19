@@ -2,13 +2,15 @@
 <div class="d-flex justify-content-center">
     <div class="border">
         {% if app.user %}
-            {% if app.user.picture != null %}
-                <img src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="" class="rounded-circle">
-                <span class="btn btn-outline-primary">{{ app.user.email }}</span>
-            {% else %}
-                <i class="fa fa-user fa-5x mr-3 " style="color: #eb6864;"></i>
-                <span class="btn btn-outline-primary">{{ app.user.email }}</span>
-            {% endif %}
+            <div class="col">
+                {% if app.user.picture != null %}
+                        <img src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="" class="rounded-circle img-comment">
+                        <span class="btn btn-outline-primary">{{ app.user.email }}</span>
+                {% else %}
+                    <i class="fa fa-user fa-4x m-2 mr-3" style="color: #225378;"></i>
+                    <span>{{ app.user.email }}</span>
+                {% endif %}
+            </div>
             {{ render(controller('App\\Controller\\AvisController:new', {'id': user.id}))}}
         {% else %}
             <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>
@@ -18,18 +20,19 @@
             </a>
         {% endif %}
         {% for comment in comments %}
-        {% if comment.user.picture != null %}
-        <div class="col-md-2 mt-4">
-            <img src="{{ asset('uploads/images/users/' ~ comment.user.picture) }}" alt="" class="rounded-circle">
-            <span class="btn btn-outline-primary">{{ comment.user.email }}</span>
-
-            {% else %}
-                <i class="fa fa-user fa-3x mr-3 " style="color: #eb6864;"></i>
-                <span class="btn btn-outline-primary">{{ comment.user.email }}</span>
-            {% endif %}
+            <div class="col mt-4">
+                {% if comment.user.picture != null %}
+                    <img src="{{ asset('uploads/images/users/' ~ comment.user.picture) }}" alt="" class="rounded-circle img-comment">
+                    <span class="btn btn-outline-info">{{ comment.user.email }}</span>
+                {% else %}
+                    <i class="fa fa-user fa-4x m-1 mr-3 " style="color: #225378;"></i>
+                    <span>{{ comment.user.email }}</span>
+                {% endif %}
+            </div>
             <div class="col">
                 <div class="border mt-4">
-                    <span>Étoiles : {{ comment.star }}/5</span>
+                    <span class="border-right border-bottom">Étoiles : {{ comment.star }}/5 </span>
+                    <br>
                     <p>{{ comment.commentaire }}</p>
                 </div>
                 <p>{{ comment.date|date("m/d/Y H-i") }}</p>

@@ -24,24 +24,7 @@
         </div>
 
         <div class="row justify-content-around">
-            <div class="border col-md-6 mt-5 ">
-                <h3 class="text-center">Formule {{ user.artistId }}</h3>
-                {% for formule in formules %}
-                    <div class="border row">
-                        <div class="col">
-                            <h4>{{ formule.title }}</h4>
-                            <p>{{ formule.description }}</p>
-                            <p>Durée évènement : {{ formule.tpsEvent|date('H:i') }} | Temps installation : {{ formule.tpsInstall|date('H:i') }}</p>
-                        </div>
-                        <div class="col-xs-1 align-self-center">
-                            <label>
-                                <input type="checkbox">
-                            </label>
-                            <h5>{{ formule.price }}</h5>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            {{ include('artist/formule/show.html.twig') }}
             <div class="col-md-3 border mt-5 d-flex align-items-center">
                 <ul class="mt-4 d-inline">
                     <li class="mb-4"><i class="fa fa-lock fa-2x"></i> Paiment 100% sécurisé</li>

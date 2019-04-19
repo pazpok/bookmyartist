@@ -1,9 +1,36 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1 class="text-center">{{ user.artistId }} classique</h1>
-    <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
-    <img src="{{ asset('uploads/images/users/' ~ user.templateImage) }}" alt="">
-    <h2>{{ user.templateTitle }}</h2>
-    <p>{{ user.templateDescription }}</p>
+    <div class="container-fluid">
+        <div class="mb-5">
+            <h1 class="text-center">{{ user.artistId }} classique</h1>
+            <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
+        </div>
+        <div class="mb-5 text-center">
+            <img src="{{ asset('uploads/images/users/' ~ user.templateImage) }}" alt="">
+            <h2 class="">{{ user.templateTitle }}</h2>
+            <p>{{ user.templateDescription }}</p>
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center"><a href="{{ user.facebook }}"><i class="fa fa-facebook-official fa-2x"></i></a></div>
+            <div class="col text-center"><a href="{{ user.twitter }}"><i class="fa fa-twitter fa-2x"></i></a></div>
+            <div class="col text-center"><a href="{{ user.youtube }}"><i class="fa fa-youtube fa-2x"></i></a></div>
+            <div class="col text-center"><a href="{{ user.soundcloud }}"><i class="fa fa-instagram fa-2x"></i></a></div>
+        </div>
+
+        <div class="row justify-content-around">
+            {{ include('artist/formule/show.html.twig') }}
+            <div class="col-md-3 border mt-5 d-flex align-items-center">
+                <ul class="mt-4 d-inline">
+                    <li class="mb-4"><i class="fa fa-lock fa-2x"></i> Paiment 100% sécurisé</li>
+                    <li class="mb-4"><i class="fa fa-warning fa-2x"></i> Assurance en cas d'annulation</li>
+                    <li class="mb-4"><i class="fa fa-volume-control-phone fa-2x"></i> En lien direct avec l'artiste</li>
+                </ul>
+            </div>
+        </div>
+        <div class="cta-formule d-flex mb-5">
+            <button class="btn">Valider</button>
+        </div>
+        {{ include('avis/show.html.twig') }}
+    </div>
 {% endblock %}
