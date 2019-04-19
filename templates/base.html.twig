@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}BookMyArtist{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
     <body class="container-fluid">
@@ -31,6 +32,8 @@
         </main>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+            <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
         {% endblock %}
 
         {% block footer %}

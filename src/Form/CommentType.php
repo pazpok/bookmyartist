@@ -5,6 +5,7 @@ namespace App\Form;
 
 
 use App\Entity\Avis;
+use blackknight467\StarRatingBundle\Form\RatingType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +16,7 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('star', null, ['label' => 'Étoiles', 'attr' => ['class' => 'star']])
+            ->add('star', RatingType::class, ['label' => 'Rating', 'stars' => 5])
             ->add('commentaire', null, ['label' => 'Commentaire'])
             ->add('Save', SubmitType::class)
         ;
