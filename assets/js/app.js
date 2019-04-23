@@ -75,3 +75,7 @@ function addFormuleFormDeleteLink($formuleFormLi) {
 
     $removeFormButton.addClass('btn btn btn-outline-danger')
 }
+
+$('.login-btn').on('click', () => {
+    $('.modal-login').modal('show')
+});

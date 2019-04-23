@@ -10,8 +10,10 @@
         {% block header %}
             <div class="d-flex flex-column justify-content-between flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
                     <div>
-                        <input type="text" name="artist-search" placeholder="Rechercher un artiste" class="test">
-                        <i class="fa fa-search"></i>
+                        <form action="{{ path('search')}}" method="POST" name="query">
+                            <input type="text" name="query" placeholder="Rechercher un artiste" class="test">
+                            <i class="fa fa-search"></i>
+                        </form>
                     </div>
                     <div>
                         <a class="p-2 text-dark" href="/"><img class="logo" src="{{ asset('uploads/logo.png') }}" alt="BookMyArtist"></a>
@@ -22,7 +24,14 @@
                             <a href="{{ path('app_logout') }}" class="btn">Déconnexion</a>
                         {% else %}
                             <a href="{{ path('app_register') }}" class="btn">S'inscrire</a>
-                            <a href="{{ path('app_login') }}" class="btn">Se connecter</a>
+                            <a href="{{ path('app_login') }}" class="btn login-btn" data-toggle="modal" data-target=".modal-login">Se connecter</a>
+                            <div class="modal fade modal-login" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        {{ render(controller('App\\Controller\\SecurityController:login')) }}
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
             </div>
