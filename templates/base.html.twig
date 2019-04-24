@@ -4,15 +4,21 @@
         <meta charset="UTF-8">
         <title>{% block title %}BookMyArtist{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
-        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="https://fullcalendar.io/releases/core/4.0.1/main.min.css">
+            <link rel="stylesheet" href="https://fullcalendar.io/releases/daygrid/4.0.1/main.min.css">
+            <link rel="stylesheet" href="https://fullcalendar.io/releases/timegrid/4.0.1/main.min.css">
+        {% endblock %}
     </head>
     <body class="container-fluid">
         {% block header %}
             <div class="d-flex flex-column justify-content-between flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
                     <div>
-                        <form action="{{ path('search')}}" method="POST" name="query">
-                            <input type="text" name="query" placeholder="Rechercher un artiste" class="test">
-                            <i class="fa fa-search"></i>
+                        <form action="{{ path('search')}}" method="GET" name="search-query">
+                            <label for="search-query"></label>
+                            <input type="text" name="search-query" placeholder="Rechercher un artiste" class="test">
+                            <a href="{{ path('search') }}"><i class="fa fa-search"></i></a>
                         </form>
                     </div>
                     <div>
@@ -28,7 +34,7 @@
                             <div class="modal fade modal-login" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        {{ render(controller('App\\Controller\\SecurityController:login')) }}
+                                        {{ render(controller('App\\Controller\\SecurityController:modalLogin')) }}
                                     </div>
                                 </div>
                             </div>
@@ -43,8 +49,11 @@
             {{ encore_entry_script_tags('app') }}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
             <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+            <script src="https://fullcalendar.io/releases/core/4.0.1/main.min.js"></script>
+            <script src="https://fullcalendar.io/releases/interaction/4.0.1/main.min.js"></script>
+            <script src="https://fullcalendar.io/releases/daygrid/4.0.1/main.min.js"></script>
+            <script src="https://fullcalendar.io/releases/timegrid/4.0.1/main.min.js"></script>
         {% endblock %}
-
         {% block footer %}
             <footer class="row bma-footer justify-content-center mt-5 pb-3">
                 <div class="col-md-3 d-flex flex-column pt-3 bma-society">
@@ -76,4 +85,5 @@
         {% endblock %}
     </body>
 </html>
+
 

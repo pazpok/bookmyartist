@@ -19,6 +19,24 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function searchBy(string $sq)
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb = $qb
+            ->innerJoin('u.genre', 'g')
+            ->innerJoin('u.type', 't')
+            ->where($qb->expr()->orX(
+                    $qb->expr()->eq('g.libelle', ':sq'),
+                    $qb->expr()->eq('u.artistId', ':sq'),
+                    $qb->expr()->eq('t.libelle', ':sq'),
+                    $qb->expr()->eq('u.localisation', ':sq'))
+            );
+
+        return $qb->setParameter(':sq', $sq)->getQuery()->getResult();
+
+
+    }
+
     public function findUser(User $user): array
     {
         $qb = $this->createQueryBuilder('u');

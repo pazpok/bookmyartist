@@ -133,4 +133,21 @@ class UserController extends AbstractController
                 ]);
         }
     }
+
+    /**
+     * @Route("/results", name="search", methods="GET")
+     */
+    public function searchQuery(Request $request)
+    {
+        $uq = $request->get('search-query');
+        if ($uq === null) {
+            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+            return $this->render('search/index.html.twig', ['users' => $users]);
+        } else {
+            $users = $this->getDoctrine()->getRepository(User::class)->searchBy($uq);
+            return $this->render('search/index.html.twig', ['users' => $users]);
+        }
+
+    }
+
 }

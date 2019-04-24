@@ -29,8 +29,9 @@
             </div>
         </div>
         <div class="cta-formule d-flex mb-5">
-            <button class="btn">Valider</button>
+            <a class="btn" href="{{ path('reservation') }}">Valider</a>
         </div>
-        {{ include('avis/show.html.twig') }}
+        {{ render(controller("App\\Controller\\AvisController:index")) }}
+        {#{{ include('avis/show.html.twig') }}#}
     </div>
 {% endblock %}
