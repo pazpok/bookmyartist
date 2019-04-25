@@ -11,6 +11,10 @@
             <img src="{{ asset('uploads/goodwp.com_30333_5a325c11e8e5b.jpg') }}" alt="">
     </div>
 
+    <div class="filter d-flex justify-content-center mt-5">
+        {{ render(controller('App\\Controller\\UserController:filterAction')) }}
+    </div>
+
     <div class="d-flex container justify-content-center mt-5">
         {% for user in users %}
             {% include 'user/card.html.twig' %}

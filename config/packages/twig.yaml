@@ -5,3 +5,4 @@ twig:
     paths:
         '%kernel.project_dir%/templates': templates
         '%kernel.project_dir%/vendor/blackknight467/star-rating-bundle/blackknight467/StarRatingBundle/Resources/views': StarRatingBundle
+        '%kernel.project_dir%/vendor/lexik/form-filter-bundle/Resources/views': Form

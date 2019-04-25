@@ -6,6 +6,7 @@ use App\Entity\Avis;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Form\ArtistType;
+use App\Form\SearchFilterType;
 use App\Form\TemplateChoiceType;
 use App\Form\TemplateType;
 use App\Form\UserType;
@@ -148,6 +149,24 @@ class UserController extends AbstractController
             return $this->render('search/index.html.twig', ['users' => $users]);
         }
 
+    }
+
+    public function filterAction(Request $request)
+    {
+        $form = $this->get('form.factory')->create(SearchFilterType::class);
+
+        $ftq = $request->get('type');
+        $ltq = $request->get('localisation');
+        $ptq = $request->get('price');
+
+
+        if ($ftq === null && $ltq === null && $ptq === null ) {
+            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+            return $this->render('filter/_form.html.twig', ['form' => $form->createView(), 'users' => $users]);
+        } else {
+            $users = $this->getDoctrine()->getRepository(User::class)->filterBy($ftq, $ltq, $ptq);
+            return $this->render('filter/_form.html.twig', ['form' => $form->createView(), 'users' => $users]);
+        }
     }
 
 }

@@ -19,6 +19,17 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function findUser(User $user): array
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        $qb = $qb->where($qb->expr()->eq('u.is_artist', true));
+
+        return $qb->setParameter(':user', false)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function searchBy(string $sq)
     {
         $qb = $this->createQueryBuilder('u');
@@ -33,46 +44,21 @@ class UserRepository extends ServiceEntityRepository
             );
 
         return $qb->setParameter(':sq', $sq)->getQuery()->getResult();
-
-
     }
 
-    public function findUser(User $user): array
+    public function filterBy(string $type, string $localisation, string $price)
     {
         $qb = $this->createQueryBuilder('u');
+        $qb =$qb
+            ->innerJoin('u.type', 't')
+            ->innerJoin('u.formule', 'f')
+            ->where($qb->expr()->orX(
+                    $qb->expr()->eq('t.libelle', ':type'),
+                    $qb->expr()->eq('u.localisation', ':localisation'),
+                    $qb->expr()->eq('f.price', ':price'))
+            );
 
-        $qb = $qb->where($qb->expr()->eq('u.is_artist', true));
+        return $qb->setParameters([':type' => $type, ':localisation' => $localisation, ':price' => $price])->getQuery()->getResult();
 
-        return $qb->setParameter(':user', false)
-            ->getQuery()
-            ->getResult();
     }
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?User
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
