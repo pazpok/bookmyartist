@@ -6,6 +6,23 @@
     <div class="d-flex justify-content-around">
         <div class="col-md-5">
             <h1>Votre réservation</h1>
+            {% for reservation in reservations %}
+                <div class="border">
+                    <h3>{{ reservation.user.firstname }} {{ reservation.user.lastname }}</h3>
+                    <p>Vous avez réservé {{ reservation.artist.artistId }} pour : </p>
+                    <ul> Formule :
+                        {% for formule in formules %}
+                            <li> Titre : {{ formule.title }} </li>
+                            <li> Description : {{ formule.description }} </li>
+                            <li> Temps d'installation : {{ formule.tpsInstall|date('H') }}h-{{ formule.tpsInstall|date('i') }}min</li>
+                            <li> Durée de l'événement : {{ formule.tpsEvent|date('H') }}h-{{ formule.tpsEvent|date('i') }}min</li>
+                            <li> Prix de la formule : {{ formule.price }} </li>
+                        {% endfor %}
+                    </ul>
+
+                    <p>Commence le : {{ reservation.dateStart|date("d/m/Y") }} à {{ reservation.dateStart|date("H") }}h et se termine le {{ reservation.dateEnd|date("d/m/Y") }} à {{ reservation.dateEnd|date("H") }}h</p>
+                </div>
+            {% endfor %}
         </div>
         <div class="col-md-5">
             {% include '@Calendar/calendar.html' %}

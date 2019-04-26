@@ -12,7 +12,16 @@
     </div>
 
     <div class="filter d-flex justify-content-center mt-5">
-        {{ render(controller('App\\Controller\\UserController:filterAction')) }}
+        <form action="{{ path('search') }}">
+            <label for="type-filter"></label>
+            <select name="type-filter" id="">
+                {% for user in users %}
+                    <option value="{{ user.type }}" >{{ user.type }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" class="btn btn-outline-success">
+        </form>
+        {#{{ render(controller('App\\Controller\\UserController:searchQuery')) }}#}
     </div>
 
     <div class="d-flex container justify-content-center mt-5">

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Avis;
+use App\Entity\Formule;
+use App\Entity\Reservation;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Form\ArtistType;
@@ -140,33 +142,40 @@ class UserController extends AbstractController
      */
     public function searchQuery(Request $request)
     {
+//        $form = $this->get('form.factory')->create(SearchFilterType::class);
+
         $uq = $request->get('search-query');
-        if ($uq === null) {
-            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-            return $this->render('search/index.html.twig', ['users' => $users]);
-        } else {
-            $users = $this->getDoctrine()->getRepository(User::class)->searchBy($uq);
-            return $this->render('search/index.html.twig', ['users' => $users]);
-        }
+        $fq = $request->get('type-filter');
+
+//        if ($uq === null) {
+//            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+//            return $this->render('search/index.html.twig', ['users' => $users]);
+//        } else {
+//            $users = $this->getDoctrine()->getRepository(User::class)->searchBy($uq);
+//            return $this->render('search/index.html.twig', ['users' => $users]);
+//        }
+
+        $users = $this->getDoctrine()->getRepository(User::class)->filterBy($fq);
+        return $this->render('search/index.html.twig', ['users' => $users]);
+
+
+
 
     }
 
-    public function filterAction(Request $request)
+    /**
+     * @Route("/reservation", name="reservation", methods="GET")
+     */
+    public function reservation(Request $request): Response
     {
-        $form = $this->get('form.factory')->create(SearchFilterType::class);
+        $em = $this->getDoctrine();
+        $user = $this->getUser();
+        $form = $request->get('formule-resa');
 
-        $ftq = $request->get('type');
-        $ltq = $request->get('localisation');
-        $ptq = $request->get('price');
+        $reservations = $em->getRepository(Reservation::class)->findBy(['user' => $user]);
+        $formules = $user->getFormules();
 
-
-        if ($ftq === null && $ltq === null && $ptq === null ) {
-            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-            return $this->render('filter/_form.html.twig', ['form' => $form->createView(), 'users' => $users]);
-        } else {
-            $users = $this->getDoctrine()->getRepository(User::class)->filterBy($ftq, $ltq, $ptq);
-            return $this->render('filter/_form.html.twig', ['form' => $form->createView(), 'users' => $users]);
-        }
+        return $this->render('reservation/index.html.twig', ['reservations' => $reservations, 'user' => $user, 'formules' => $formules]);
     }
 
 }

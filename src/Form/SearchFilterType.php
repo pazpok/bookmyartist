@@ -6,7 +6,6 @@ namespace App\Form;
 
 use App\Entity\Formule;
 use App\Entity\User;
-use App\Repository\FormuleRepository;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +19,7 @@ class SearchFilterType extends AbstractType
         $builder
             ->add('type', EntityFilterType::class, [
                 'class' => User::class,
+
                 'label' => 'Type :',
                 'choice_label' => 'type',
                 'choice_value' => 'type',
