@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Genre;
 use App\Entity\Type;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,13 +15,16 @@ class DefaultController extends AbstractController
      */
     public function homepage()
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-        $types = $this->getDoctrine()->getRepository(Type::class)->findAll();
+        $em = $this->getDoctrine();
+        $users = $em->getRepository(User::class)->findAll();
+        $types = $em->getRepository(Type::class)->findAll();
+        $genres = $em->getRepository(Genre::class)->findAll();
 
         return $this->render('default/homepage.html.twig', [
             'controller_name' => 'DefaultController',
             'users' => $users,
             'types' => $types,
+            'genres' => $genres,
         ]);
     }
 

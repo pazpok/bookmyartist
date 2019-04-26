@@ -145,20 +145,34 @@ class UserController extends AbstractController
 //        $form = $this->get('form.factory')->create(SearchFilterType::class);
 
         $uq = $request->get('search-query');
+
+        $users = $this->getDoctrine()->getRepository(User::class);
+        if ($uq === null) {
+            $users->findAll();
+            return $this->render('search/index.html.twig', ['users' => $users]);
+        } else {
+            $users->searchBy($uq);
+            return $this->render('search/index.html.twig', ['users' => $users]);
+        }
+
+
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @Route("/results", name="search", methods="GET")
+     */
+    public function filterQuery(Request $request)
+    {
         $fq = $request->get('type-filter');
+        $lq = $request->get('localisation-filter');
+        $gq = $request->get('genre-filter');
 
-//        if ($uq === null) {
-//            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-//            return $this->render('search/index.html.twig', ['users' => $users]);
-//        } else {
-//            $users = $this->getDoctrine()->getRepository(User::class)->searchBy($uq);
-//            return $this->render('search/index.html.twig', ['users' => $users]);
-//        }
 
-        $users = $this->getDoctrine()->getRepository(User::class)->filterBy($fq);
+        $users = $this->getDoctrine()->getRepository(User::class)->filterBy($fq, $lq, $gq);
+
         return $this->render('search/index.html.twig', ['users' => $users]);
-
-
 
 
     }

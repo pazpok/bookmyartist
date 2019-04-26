@@ -46,25 +46,22 @@ class UserRepository extends ServiceEntityRepository
         return $qb->setParameter(':sq', $sq)->getQuery()->getResult();
     }
 
-    public function filterBy($type)
+    public function filterBy($type, $localisation, $genre)
     {
         $qb = $this->createQueryBuilder('u');
         $qb =$qb
             ->innerJoin('u.type', 't')
             ->innerJoin('u.formules', 'f')
+            ->innerJoin('u.genre', 'g')
             ;
 
-        if ($type != null) {
-            $qb = $qb->orWhere($qb->expr()->eq('t.libelle', ':type'))
-                ->setParameter(':type', $type);
+        if ($type != null && $localisation != null) {
+            $qb = $qb->andWhere($qb->expr()->eq('t.libelle', ':type'))
+                    ->andWhere($qb->expr()->eq('u.localisation', ':localisation'))
+                    ->andWhere($qb->expr()->eq('g.libelle', ':genre'))
+                ->setParameters([':type' => $type, ':localisation' => $localisation, ':genre' => $genre]);
         }
-        /*
-            ->where($qb->expr()->orX(
-                    $qb->expr()->eq('t.libelle', ':type'),
-                    $qb->expr()->eq('u.localisation', ':localisation'),
-                    $qb->expr()->eq('f.price', ':price'))
-            );
-*/
+
         return $qb->getQuery()->getResult();
 
     }
