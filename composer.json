@@ -9,6 +9,7 @@
         "easycorp/easyadmin-bundle": "^2.1",
         "jwilsson/spotify-web-api-php": "^2.6",
         "lexik/form-filter-bundle": "~5.0",
+        "mashape/unirest-php": "^3.0",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.2.*",
         "symfony/console": "4.2.*",

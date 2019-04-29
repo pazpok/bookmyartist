@@ -3,15 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Avis;
-use App\Entity\Formule;
 use App\Entity\Reservation;
 use App\Entity\Template;
 use App\Entity\User;
 use App\Form\ArtistType;
-use App\Form\SearchFilterType;
 use App\Form\TemplateChoiceType;
 use App\Form\TemplateType;
 use App\Form\UserType;
+use SpotifyWebAPI\Session;
+use SpotifyWebAPI\SpotifyWebAPI;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -118,9 +118,27 @@ class UserController extends AbstractController
         $formules = $user->getFormules();
         $comments = $this->getDoctrine()->getRepository(Avis::class)->findBy(['artist' => $user]);
 
+        $session = new Session(
+            '82f24e2fac5a4357a4d3140af74f262f',
+            '27e23cb55cb74c8d8a7b0d642ba46d31'
+//            'http://127.0.0.1:8000/callback'
+        );
+
+        $session->requestCredentialsToken();
+        $accessToken = $session->getAccessToken();
+
+        $api = new SpotifyWebAPI();
+        $api->setAccessToken($accessToken);
+        $api->getArtistTopTracks('0Ldjd0Z66CJ0rChWXx0jzB', ["country" => "FR"]);
+
+
+//        header('Location: ' . $session->getAuthorizeUrl());
+//        dump($api);die();
+
+
         if ($getTemplate == 1) {
             return $this->render('artist/spotify/show.html.twig',
-                ['user' => $user, 'formules' => $formules, 'comments' => $comments
+                ['user' => $user, 'formules' => $formules, 'comments' => $comments, 'data' => $api
                 ]);
         } elseif ($getTemplate == 2) {
             return $this->render('artist/youtube/show.html.twig',

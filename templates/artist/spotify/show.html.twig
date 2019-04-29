@@ -14,12 +14,9 @@
         <div class="border w-50 m-auto mb-5 mt-5">
             <h3 class="text-center">Musique spotify de {{ user.artistId }}</h3>
             <ul>
-                <li><i class="fa fa-play"></i> Musique 1</li>
-                <li><i class="fa fa-play"></i> Musique 2</li>
-                <li><i class="fa fa-play"></i> Musique 3</li>
-                <li><i class="fa fa-play"></i> Musique 4</li>
-                <li><i class="fa fa-play"></i> Musique 5</li>
-                <li><i class="fa fa-play"></i> Musique 6</li>
+                {% for song in data.request.lastResponse["body"].tracks %}
+                    <li><i class="fa fa-play"></i> {{ song.name }} <a href="{{ song.preview_url }}">Écouter l'extrait</a></li>
+                {% endfor %}
             </ul>
         </div>
         <div class="row mt-5">
