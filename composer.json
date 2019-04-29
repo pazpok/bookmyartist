@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "blackknight467/star-rating-bundle": "2.*",
         "easycorp/easyadmin-bundle": "^2.1",
+        "google/apiclient": "^2.0",
         "jwilsson/spotify-web-api-php": "^2.6",
         "lexik/form-filter-bundle": "~5.0",
         "mashape/unirest-php": "^3.0",

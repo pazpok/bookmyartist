@@ -15,7 +15,12 @@
             <h3 class="text-center">Musique spotify de {{ user.artistId }}</h3>
             <ul>
                 {% for song in data.request.lastResponse["body"].tracks %}
-                    <li><i class="fa fa-play"></i> {{ song.name }} <a href="{{ song.preview_url }}">Écouter l'extrait</a></li>
+                    <li><i class="fa fa-play"></i> {{ song.name }}
+                        {% if song.preview_url != null %}
+                            <a href="{{ song.preview_url }}">Écouter l'extrait</a></li>
+                        {% else %}
+                            <p>Pas d'extrait disponible, lien direct vers spotify</p>
+                        {% endif %}
                 {% endfor %}
             </ul>
         </div>

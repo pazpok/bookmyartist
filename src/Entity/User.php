@@ -466,6 +466,32 @@ class User implements UserInterface
         $this->youtube = $youtube;
         return $this;
     }
+
+    /**
+     * @var string|null
+     * @ORM\Column(name="youtube_id", type="string", length=255, nullable=true)
+     */
+    private $youtubeId;
+    /**
+     * @return string|null
+     */
+    public function getYoutubeId(): ?string
+    {
+        return $this->youtubeId;
+    }
+    /**
+     * @param string|null $youtubeId
+     * @return User
+     */
+    public function setYoutubeId(?string $youtubeId): User
+    {
+        $this->youtubeId = $youtubeId;
+        return $this;
+    }
+
+
+
+
     /**
      * @var string|null
      *
@@ -488,6 +514,33 @@ class User implements UserInterface
         $this->spotify = $spotify;
         return $this;
     }
+
+
+
+    /**
+     * @var string|null
+     * @ORM\Column(name="spotify_id", type="string", length=255, nullable=true)
+     */
+    private $spotifyId;
+    /**
+     * @return string|null
+     */
+    public function getSpotifyId(): ?string
+    {
+        return $this->spotifyId;
+    }
+    /**
+     * @param string|null $spotifyId
+     * @return User
+     */
+    public function setSpotifyId(?string $spotifyId): User
+    {
+        $this->spotifyId = $spotifyId;
+        return $this;
+    }
+
+
+
     /**
      * @var string|null
      *
@@ -510,6 +563,31 @@ class User implements UserInterface
         $this->soundcloud = $soundcloud;
         return $this;
     }
+
+    /**
+     * @var string|null
+     * @ORM\Column(name="soundcloud_id", type="string", length=255, nullable=true)
+     */
+    private $soundcloudId;
+    /**
+     * @return string|null
+     */
+    public function getSoundcloudId(): ?string
+    {
+        return $this->soundcloudId;
+    }
+    /**
+     * @param string|null $soundcloudId
+     * @return User
+     */
+    public function setSoundcloudId(?string $soundcloudId): User
+    {
+        $this->soundcloudId = $soundcloudId;
+        return $this;
+    }
+
+
+
     /**
      * @var Template
      *
@@ -701,5 +779,7 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
+
 
 }

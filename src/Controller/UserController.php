@@ -118,31 +118,46 @@ class UserController extends AbstractController
         $formules = $user->getFormules();
         $comments = $this->getDoctrine()->getRepository(Avis::class)->findBy(['artist' => $user]);
 
-        $session = new Session(
-            '82f24e2fac5a4357a4d3140af74f262f',
-            '27e23cb55cb74c8d8a7b0d642ba46d31'
-//            'http://127.0.0.1:8000/callback'
-        );
-
-        $session->requestCredentialsToken();
-        $accessToken = $session->getAccessToken();
-
-        $api = new SpotifyWebAPI();
-        $api->setAccessToken($accessToken);
-        $api->getArtistTopTracks('0Ldjd0Z66CJ0rChWXx0jzB', ["country" => "FR"]);
-
-
-//        header('Location: ' . $session->getAuthorizeUrl());
-//        dump($api);die();
-
-
         if ($getTemplate == 1) {
+
+            $spotifyId = $user->getSpotifyId();
+
+            if ($spotifyId != null) {
+                $session = new Session(
+                    '82f24e2fac5a4357a4d3140af74f262f',
+                    '27e23cb55cb74c8d8a7b0d642ba46d31'
+                );
+
+                $session->requestCredentialsToken();
+                $accessToken = $session->getAccessToken();
+
+                $api = new SpotifyWebAPI();
+                $api->setAccessToken($accessToken);
+                $api->getArtistTopTracks($spotifyId, ["country" => "FR"]);
+            }
+
             return $this->render('artist/spotify/show.html.twig',
-                ['user' => $user, 'formules' => $formules, 'comments' => $comments, 'data' => $api
+                ['user' => $user, 'formules' => $formules, 'comments' => $comments, 'data' => $api,
                 ]);
+
         } elseif ($getTemplate == 2) {
+
+            $client = new \Google_Client();
+            $client->setDeveloperKey('AIzaSyDzD98-f9oGvSr9Y_4lR0zUfOUq5v0VsbY');
+
+            $googleId = new \Google_Service_YouTube($client);
+            //UserChannelYoutube
+            $queryParams = [
+                'chart' => 'mostPopular',
+                'maxResults' => 3,
+                'regionCode' => 'FR'
+            ];
+
+            $ucy = $googleId->videos->listVideos('snippet, contentDetails, statistics', $queryParams);
+
+
             return $this->render('artist/youtube/show.html.twig',
-                ['user' => $user, 'formules' => $formules, 'comments' => $comments
+                ['user' => $user, 'formules' => $formules, 'comments' => $comments, 'data' => $ucy,
                 ]);
         } elseif ($getTemplate == 3) {
             return $this->render('artist/soundcloud/show.html.twig',
