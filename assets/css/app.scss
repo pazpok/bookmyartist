@@ -12,9 +12,24 @@ $lwhite : #F1F1F1;
 $orange : #EB7F00;
 
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat Light", sans-serif;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+ul{
+  list-style-type: none;
+  text-decoration: none;
+}
+
 body {
   background-color: $lwhite;
-  font-family: "Montserrat Light", sans-serif;
 }
 
 li {
@@ -34,12 +49,6 @@ i.fa-facebook-official, .fa-twitter, .fa-youtube, .fa-instagram, .fa-lock, .fa-w
 
 .logo {
   width: 200px;
-}
-
-
-.header-home {
-  display: flex;
-  justify-content: center;
 }
 
 .main-title {

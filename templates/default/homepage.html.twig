@@ -3,15 +3,15 @@
 {% block title %}BookMyArtist{% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="header-home d-flex justify-content-center">
+<div class="container">
+    <div class="d-flex justify-content-center">
         <div class="main-title position-absolute align-items-center">
             <h1>Le 1er site de réservation d'artiste pour les particuliers</h1>
         </div>
             <img src="{{ asset('uploads/goodwp.com_30333_5a325c11e8e5b.jpg') }}" alt="">
     </div>
 
-    <div class="filter d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-5">
         <form action="{{ path('search') }}">
             <select name="type-filter" id="">
                 {% for type in types %}
@@ -38,7 +38,7 @@
         {#{{ render(controller('App\\Controller\\UserController:searchQuery')) }}#}
     </div>
 
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-between mt-5">
         {% for user in users %}
             {% include 'user/card.html.twig' %}
         {% endfor %}

@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -38,6 +39,7 @@ class ArtistType extends AbstractType
             ->add('spotifyId', null, ['help' => 'Où trouver mon id Spotify ?', 'attr' => ['class' => 'spotify-id']])
             ->add('soundcloudId', null, ['help' => 'Où trouver mon id Soundcloud ?', 'attr' => ['class' => 'soundcloud-id']])
             ->add('youtubeId', null, ['help' => 'Où trouver mon id Youtube ?', 'attr' => ['class' => 'youtube-id']])
+            ->add('save', SubmitType::class, ['label' => 'Mettre à jour', 'attr' => ['class' => 'btn btn-outline-primary']])
 
         ;
     }
