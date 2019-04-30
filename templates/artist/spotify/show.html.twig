@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container-fluid">
         <div class="mb-5">
-            <h1 class="text-center">{{ user.artistId }}</h1>
+            <h1 class="text-center">{{ user.artistId }} classique</h1>
             <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
         </div>
         <div class="mb-5 text-center">
@@ -40,9 +40,6 @@
                     <li class="mb-4"><i class="fa fa-volume-control-phone fa-2x"></i> En lien direct avec l'artiste</li>
                 </ul>
             </div>
-        </div>
-        <div class="cta-formule d-flex mb-5">
-            <a class="btn" href="{{ path('reservation') }}">Valider</a>
         </div>
         {{ include('avis/show.html.twig') }}
     </div>

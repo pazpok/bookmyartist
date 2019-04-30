@@ -1,5 +1,5 @@
 {% if user.isArtist and user.template != null %}
-    <article class="col-md-3 ml-2">
+    <article class="container col-md-3 ml-2 card-colums">
             <a href="{{ path('artist_show', {'artistId' : user.artistId}) }}">
             <div class="card">
                 {% if user.picture != null %}

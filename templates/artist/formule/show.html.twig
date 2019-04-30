@@ -1,6 +1,6 @@
 <div class="border col-md-6 mt-5 ">
     <h3 class="text-center">Formule {{ user.artistId }}</h3>
-    <form action="{{ path('reservation') }}" method="GET" name="formule-resa"></form>
+    <form action="{{ path('reservation') }}" method="GET" name="formule-resa">
         {% for formule in formules %}
             <div class="border row">
                 <div class="col">
@@ -16,5 +16,6 @@
                 </div>
             </div>
         {% endfor %}
-    <input type="submit" class="btn btn-outline-primary">
+            <input type="submit" class="btn btn-outline-primary">
+    </form>
 </div>
