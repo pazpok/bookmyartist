@@ -35,9 +35,9 @@ class ArtistType extends AbstractType
             ->add('youtube', null)
             ->add('soundcloud', null)
             ->add('spotify', null)
-            ->add('spotifyId', null)
-            ->add('soundcloudId', null)
-            ->add('youtubeId', null)
+            ->add('spotifyId', null, ['help' => 'Où trouver mon id Spotify ?', 'attr' => ['class' => 'spotify-id']])
+            ->add('soundcloudId', null, ['help' => 'Où trouver mon id Soundcloud ?', 'attr' => ['class' => 'soundcloud-id']])
+            ->add('youtubeId', null, ['help' => 'Où trouver mon id Youtube ?', 'attr' => ['class' => 'youtube-id']])
 
         ;
     }

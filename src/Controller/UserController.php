@@ -141,24 +141,33 @@ class UserController extends AbstractController
                 ]);
 
         } elseif ($getTemplate == 2) {
+            $api = 'AIzaSyDzD98-f9oGvSr9Y_4lR0zUfOUq5v0VsbY';
+            $id = $user->getYoutubeId();
+            $max = 3;
+//            $client = new \Google_Client();
+//            $client->setDeveloperKey('AIzaSyDzD98-f9oGvSr9Y_4lR0zUfOUq5v0VsbY');
+//
+//            $googleId = new \Google_Service_YouTube($client);
+//            //UserChannelYoutube
+//            $queryParams = [
+////                'chart' => 'mostPopular',
+//                'id' => 'zPdBvBcUZ8vxCi-NJjrCiw',
+////                'maxResults' => 3,
+////                'regionCode' => 'FR',
+//            ];
+            if ($id != null)
+            {
+                $ucy = json_decode(file_get_contents('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId='.$id.'&maxResults='.$max.'&key='.$api));
 
-            $client = new \Google_Client();
-            $client->setDeveloperKey('AIzaSyDzD98-f9oGvSr9Y_4lR0zUfOUq5v0VsbY');
+                return $this->render('artist/youtube/show.html.twig',
+                    ['user' => $user, 'formules' => $formules, 'comments' => $comments, 'data' => $ucy,
+                    ]);
+            } else {
+                return $this->render('artist/youtube/show.html.twig',
+                    ['user' => $user, 'formules' => $formules, 'comments' => $comments,
+                    ]);
+            }
 
-            $googleId = new \Google_Service_YouTube($client);
-            //UserChannelYoutube
-            $queryParams = [
-                'chart' => 'mostPopular',
-                'maxResults' => 3,
-                'regionCode' => 'FR'
-            ];
-
-            $ucy = $googleId->videos->listVideos('snippet, contentDetails, statistics', $queryParams);
-
-
-            return $this->render('artist/youtube/show.html.twig',
-                ['user' => $user, 'formules' => $formules, 'comments' => $comments, 'data' => $ucy,
-                ]);
         } elseif ($getTemplate == 3) {
             return $this->render('artist/soundcloud/show.html.twig',
                 ['user' => $user, 'formules' => $formules, 'comments' => $comments

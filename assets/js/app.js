@@ -113,3 +113,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calendar.render();
 });
+
+$('#artist_spotifyId_help').on('click', () => {
+    $('#artist_spotifyId_help').html('<span>Aller sur votre page artiste dans l\'application PC, puis clique droit et copier l\'URI.</span>')
+});
+
+
+$('#artist_soundcloudId_help').on('click', () => {
+    $('#artist_soundcloudId_help').html('<span>Aller sur votre page artiste dans l\'application PC, puis clique droit et copier l\'URI.</span>')
+});
+
+$('#artist_youtubeId_help').on('click', () => {
+    $('#artist_youtubeId_help').html('<span>Aller sur votre page artiste dans l\'application PC, puis clique droit et copier l\'URI.</span>')
+});

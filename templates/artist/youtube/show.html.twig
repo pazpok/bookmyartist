@@ -12,8 +12,13 @@
                 <p>{{ user.templateDescription }}</p>
         </div>
         <div class="m-auto mb-5 mt-5 d-flex justify-content-center">
-
-            {#<div class="m-2 embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/VPRjCeoBqrI" class="embed-responsive-item" allowfullscreen></iframe></div>#}
+            {% if user.youtubeId != null %}
+                {% for video in data.items %}
+                    <div class="m-2 embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.id.videoId }}" class="embed-responsive-item" allowfullscreen></iframe></div>
+                {% endfor %}
+            {% else %}
+                <div><p>Pas de vidéo disponible</p></div>
+            {% endif %}
             {#<div class="m-2 embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/L3wKzyIN1yk" class="embed-responsive-item" allowfullscreen></iframe></div>#}
             {#<div class="m-2 embed-responsive embed-responsive-16by9"><iframe width="560" height="315" src="https://www.youtube.com/embed/pXRviuL6vMY" class="embed-responsive-item" allowfullscreen></iframe></div>#}
         </div>

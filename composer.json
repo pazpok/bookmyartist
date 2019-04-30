@@ -32,7 +32,8 @@
         "symfony/webpack-encore-bundle": "^1.2",
         "symfony/yaml": "4.2.*",
         "tattali/calendar-bundle": "^1.1",
-        "vich/uploader-bundle": "^1.9"
+        "vich/uploader-bundle": "^1.9",
+        "ext-json": "*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
