@@ -12,28 +12,37 @@
     </div>
 
     <div class="d-flex justify-content-center mt-5">
-        <form action="{{ path('search') }}">
-            <select name="type-filter" id="">
-                {% for type in types %}
-                    <option value="{{ type.libelle }}" >{{ type.libelle }}</option>
-                {% endfor %}
-            </select>
-            <select name="genre-filter" id="">
-                {% for genre in genres %}
-                    <option value="{{ genre.libelle }}" >{{ genre.libelle }}</option>
-                {% endfor %}
-            </select>
-            <select name="localisation-filter" id="">
-                {% for user in users %}
-                    <option value="{{ user.localisation }}" >{{ user.localisation }}</option>
-                {% endfor %}
-            </select>
+        <form action="{{ path('search') }}" class="d-flex">
+            <div class="from-group">
+                <label for="type-filter">Type artiste</label>
+                <select name="type-filter" id="type-filter" class="form-control">
+                    {% for type in types %}
+                        <option value="{{ type.libelle }}" >{{ type.libelle }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="genre-filter">Genre</label>
+                <select name="genre-filter" id="genre-filter" class="form-control">
+                    {% for genre in genres %}
+                        <option value="{{ genre.libelle }}" >{{ genre.libelle }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="localisation-filter">Localisation</label>
+                <select name="localisation-filter" id="localisation-filter" class="form-control">
+                    {% for user in users %}
+                        <option value="{{ user.localisation }}" >{{ user.localisation }}</option>
+                    {% endfor %}
+                </select>
+            </div>
 {#            <select name="price-filter" id="">#}
 {#                {% for user in users %}#}
 {#                    <option value="{{ user.formules }}" >{{ user.formules }}</option>#}
 {#                {% endfor %}#}
 {#            </select>#}
-            <input type="submit" class="btn btn-outline-success">
+            <button type="submit" class="btn btn-outline-success ml-3 h-50 align-self-center">Valider</button>
         </form>
         {#{{ render(controller('App\\Controller\\UserController:searchQuery')) }}#}
     </div>

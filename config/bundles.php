@@ -20,4 +20,5 @@ return [
     blackknight467\StarRatingBundle\StarRatingBundle::class => ['all' => true],
     CalendarBundle\CalendarBundle::class => ['all' => true],
     Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle::class => ['all' => true],
+    Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
 ];
