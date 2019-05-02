@@ -15,10 +15,12 @@
         {% block header %}
             <div class="d-flex flex-column justify-content-between flex-md-row align-items-center p-3 px-md-4 bg-white border-bottom shadow-sm">
                     <div>
-                        <form action="{{ path('search')}}" method="GET">
+                        <form action="{{ path('search')}}" method="GET" class="d-flex">
                             <label for="search-query"></label>
-                            <input type="text" name="search-query" placeholder="Rechercher un artiste" class="test">
-                            <a href="{{ path('search') }}"><i class="fa fa-search"></i></a>
+                            <input type="text" name="search-query" placeholder="Rechercher un artiste" class="form-control ">
+                            <button type="submit" class="btn btn-outline-primary fa fa-search ml-2">
+                            </button>
+                            {#<a href="{{ path('search') }}"><i class="fa fa-search"></i></a>#}
                         </form>
                     </div>
                     <div>
@@ -61,15 +63,19 @@
                     <span>3 Place Général Giraud</span>
                     <span>35000 RENNES</span>
                     <div class="d-flex flex-column">
-                        <i class="fa fa-phone"> +33 2 58 54 12 14</i>
-                        <i class="fa fa-mobile-phone"> +33 6 85 47 21 44</i>
-                        <i class="fa fa-envelope-o"> contact@bookmyartist.com</i>
+                        <span><i class="fa fa-phone"></i>  +33 2 58 54 12 14</span>
+                        <span><i class="fa fa-mobile-phone"></i> +33 6 85 47 21 44</span>
+                        <span><i class="fa fa-envelope-o"></i> contact@bookmyartist.com</span>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex flex-column pt-3 bma-link-footer">
                     <h3>Accès rapide</h3>
                         <a href="/">BookMyArtist qu'est ce que c'est ?</a>
-                        <a href="{{ path('app_register') }}">Créer un compte</a>
+                        {% if app.user %}
+                            <a href="{{ path('app_user') }}">Mon compte</a>
+                        {% else %}
+                            <a href="{{ path('app_register') }}">Créer un compte</a>
+                        {% endif %}
                         <a href="/">Mentions Légales</a>
                         <a href="/">CGU-CGV</a>
                         <a href="/">Contact</a>
@@ -78,7 +84,7 @@
                     <h3>Newsletter</h3>
                     <p>Tenez-vous au courant des dernières actualités</p>
                     <label>
-                        <input type="email" placeholder="@email">
+                        <input type="email" placeholder="@email" class="form-control">
                     </label>
                 </div>
             </footer>

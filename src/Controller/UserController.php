@@ -184,14 +184,12 @@ class UserController extends AbstractController
      */
     public function searchQuery(Request $request)
     {
-//        $form = $this->get('form.factory')->create(SearchFilterType::class);
 
         $uq = $request->get('search-query');
 
 
-        if ($uq === null) {
+        if ($uq === "") {
             $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-//            dump($uq);die();
             return $this->render('search/index.html.twig', ['users' => $users]);
         } else {
             $users = $this->getDoctrine()->getRepository(User::class)->searchBy($uq);

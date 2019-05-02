@@ -1,10 +1,27 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button type="submit" class="btn btn-primary">S'enregistrer</button>
+    <h1 class="text-center mt-3">Créér mon compte BookMyArtist</h1>
+    <div class="container d-flex mt-5">
+        <div class="register-form col">
+            {{ form_start(form, {'attr' : {'class': 'd-flex row m-0 m-auto justify-content-center'}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+        <div class="register-text col">
+            <h2>Pourquoi créer un compte chez BookMyArtist</h2>
+            <ul>
+                <li>
+                    <h3>Compte Utilisateur, quels avantages ?</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad, aspernatur blanditiis dignissimos distinctio dolor esse explicabo molestiae nam reprehenderit sed, ullam. Aspernatur, exercitationem, quos.</p>
+                </li>
+                <li>
+                    <h3>Compte Artiste, quels avantages ?</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto cumque distinctio dolore illum, iusto natus officia perspiciatis quasi quia quibusdam, temporibus, veniam veritatis? Fugiat, molestias?</p>
+                </li>
+            </ul>
+        </div>
     </div>
-    {{ form_end(form) }}
+
+
 {% endblock %}
