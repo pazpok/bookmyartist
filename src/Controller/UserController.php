@@ -180,7 +180,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/results", name="search", methods="GET")
+     * @Route("/search-results", name="search", methods="GET")
      */
     public function searchQuery(Request $request)
     {
@@ -188,12 +188,13 @@ class UserController extends AbstractController
 
         $uq = $request->get('search-query');
 
-        $users = $this->getDoctrine()->getRepository(User::class);
+
         if ($uq === null) {
-            $users->findAll();
+            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+//            dump($uq);die();
             return $this->render('search/index.html.twig', ['users' => $users]);
         } else {
-            $users->searchBy($uq);
+            $users = $this->getDoctrine()->getRepository(User::class)->searchBy($uq);
             return $this->render('search/index.html.twig', ['users' => $users]);
         }
 
@@ -203,7 +204,7 @@ class UserController extends AbstractController
     /**
      * @param Request $request
      * @return Response
-     * @Route("/results", name="search", methods="GET")
+     * @Route("/filter-results", name="search-filter", methods="GET")
      */
     public function filterQuery(Request $request)
     {
