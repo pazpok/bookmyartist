@@ -1,4 +1,4 @@
-{{ form_start(tform) }}
-            {{ form_widget(tform) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(tform) }}
+<p class="text-center h4">Choisir mon template</p>
+    {{ form_start(tform, {'attr' : {'class': 'd-flex row m-0 m-auto justify-content-center'}}) }}
+        {{ form_widget(tform) }}
+    {{ form_end(tform) }}

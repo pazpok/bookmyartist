@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center">Contact</h1>
+    <div class="container">
+        <div class="mt-5">
+            <div class="row justify-content-around">
+                <div class="col-5 mt-3">
+                    <img src="{{ asset('uploads/354.jpg') }}" alt="">
+                </div>
+                <div class="col-4 mt-3">
+                    <form>
+                        <div class="form-group">
+                            <label for="">Nom</label>
+                            <input type="text" class="form-control" id="nom" placeholder="Nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Prénom</label>
+                            <input type="text" class="form-control" id="prénom" placeholder="Prénom">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Adresse mail</label>
+                            <input type="email" class="form-control" id="mail" placeholder="name@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Message</label>
+                            <textarea class="form-control" id="message" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-outline-success">Envoyez votre demande !</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

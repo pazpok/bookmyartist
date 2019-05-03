@@ -1,21 +1,19 @@
 {% if user.isArtist and user.template != null %}
-    <article class="col card-effect">
-            <a href="{{ path('artist_show', {'artistId' : user.artistId}) }}">
-            <div class="card">
-                {% if user.picture != null %}
-                    <img class="card-img-top" src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="{{ user.picture }}">
-                {% else %}
-                    <div class="card-img-top d-flex justify-content-center">
-                        <i class="fa fa-user fa-5x"></i>
-                    </div>
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title text-xl-center">{{ user.artistId }}</h5>
-                    <p class="card-text">Type d'artiste : {{ user.type }}</p>
-                    <p class="card-text">Genre : {% for genre in user.genre %}  {{ genre }} {% endfor %}</p>
-                    <p class="card-text">Localisation : {{ user.localisation }}</p>
+    <div class="card card-effect col-md-3 m-2">
+        <a href="{{ path('artist_show', {'artistId' : user.artistId}) }}">
+            {% if user.picture != null %}
+                <img class="card-img-top" src="{{ asset('uploads/images/users/' ~ user.picture) }}" alt="{{ user.picture }}">
+            {% else %}
+                <div class="card-img-top d-flex justify-content-center">
+                    <i class="fa fa-user fa-5x"></i>
                 </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title text-xl-center">{{ user.artistId }}</h5>
+                <p class="card-text">Type d'artiste : {{ user.type }}</p>
+                <p class="card-text">Genre : {% for genre in user.genre %}  {{ genre }} {% endfor %}</p>
+                <p class="card-text">Localisation : {{ user.localisation }}</p>
             </div>
         </a>
-    </article>
+    </div>
 {% endif %}

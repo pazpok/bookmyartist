@@ -70,15 +70,15 @@
                 </div>
                 <div class="col-md-3 d-flex flex-column pt-3 bma-link-footer">
                     <h3>Accès rapide</h3>
-                        <a href="/">BookMyArtist qu'est ce que c'est ?</a>
+                        <a href="{{ path('info') }}">BookMyArtist qu'est ce que c'est ?</a>
                         {% if app.user %}
                             <a href="{{ path('app_user') }}">Mon compte</a>
                         {% else %}
                             <a href="{{ path('app_register') }}">Créer un compte</a>
                         {% endif %}
-                        <a href="/">Mentions Légales</a>
-                        <a href="/">CGU-CGV</a>
-                        <a href="/">Contact</a>
+                        <a href="{{ path('mentionslegales') }}">Mentions Légales</a>
+                        <a href="{{ path('cgucgv') }}">CGU-CGV</a>
+                        <a href="{{ path('contact') }}">Contact</a>
                 </div>
                 <div class="col-md-3 pt-3 bma-newsletter">
                     <h3>Newsletter</h3>
