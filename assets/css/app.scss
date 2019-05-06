@@ -264,3 +264,17 @@ input[type="checkbox"].switch_1:checked:after{
   background-color: $orange;
   border-color: $orange;
 }
+
+.artist-template {
+  background-color: $orange;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  i, label{
+    color: white;
+  }
+}
+
+#template_templateDescription {
+  width: 100%;
+}

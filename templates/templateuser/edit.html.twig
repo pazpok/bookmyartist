@@ -4,15 +4,20 @@
         <div class="example-wrapper">
         <h1 class="text-center">Template {{ user.template.title }} de {{ app.user.firstname ~ ' ' ~ app.user.lastname }}</h1>
             <div class="form-inline">
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr' : {'class': 'd-flex flex-wrap justify-content-center'}}) }}
                 <div class="form-group-row">
-                    <ul class="formules" data-prototype="{{ form_widget(form.formules.vars.prototype)|e('html_attr') }}">
-                        {#{% for formule in form.formules %}#}
-                        {#<li>{{ form_row(formule.title) }}</li>#}
-                        {#{% endfor %}#}
-                    </ul>
+                    <div class="d-flex border rounded bg-light mb-5">
+                        <div class="artist-template">{{ form_row(form.templateTitle) }}</div>
+                        <div class="artist-template">{{ form_row(form.templateDescription) }}</div>
+                        <div class="artist-template">{{ form_row(form.templateImageFile) }}</div>
+                    </div>
+                    <div class="formules">
+                        <ul class="formules" data-prototype="{{ form_row(form.formules.vars.prototype)|e('html_attr') }}">
+                        </ul>
+                    </div>
                 </div>
                 {{ form_end(form) }}
+                <div class="w-25 m-auto">{{ form_row(form.save) }}</div>
             </div>
         <br>
     </div>

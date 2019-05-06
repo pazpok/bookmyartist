@@ -1,5 +1,5 @@
 {% if user.isArtist != false %}
-    {{ form_start(form, {'attr' : {'class': 'd-flex row m-0 m-auto'}}) }}
+    {{ form_start(form, {'attr' : {'class': 'm-0 m-auto'}}) }}
 {% else %}
     {{ form_start(form, {'attr' : {'class': 'd-flex flex-column justify-content-center m-auto'}}) }}
 {% endif %}
@@ -19,6 +19,7 @@
             <div class="artist-social">{{ form_row(form.email) }}</div>
             <div class="artist-social">{{ form_row(form.pictureFile) }}</div>
             {% if user.isArtist != false %}
+                <hr class="mt-5">
                 <p class="h4 text-center">Vos informations artiste</p>
                 <div class="artist-social">{{ form_row(form.artistId) }}</div>
                 <div class="artist-social">{{ form_row(form.type) }}</div>
@@ -42,5 +43,5 @@
             </div>
         {% endif %}
     </div>
-    <div class="m-auto">{{ form_row(form.save) }}</div>
+    <div class="w-25 m-auto">{{ form_row(form.save) }}</div>
 {{ form_end(form) }}
