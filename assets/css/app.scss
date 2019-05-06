@@ -203,3 +203,64 @@ i.fa-facebook-official, .fa-twitter, .fa-youtube, .fa-instagram, .fa-lock, .fa-w
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
+input[type="checkbox"].switch_1{
+  font-size: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-left: 5px;
+  width: 50px;
+  height: 25px;
+  background: #ddd;
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked{
+  background: $orange;
+  margin-left: 5px;
+}
+
+input[type="checkbox"].switch_1:after{
+  position: absolute;
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+  box-shadow: 0 0 .25em rgba(0,0,0,.3);
+  -webkit-transform: scale(.7);
+  transform: scale(.7);
+  left: 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked:after{
+  left: calc(100% - 25px);
+}
+
+.artist-social {
+  background-color: $orange;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  i, label{
+    color: white;
+  }
+}
+
+.btn-outline-primary {
+  color: $orange;
+  border-color: $orange;
+}
+
+.btn-outline-primary:hover {
+  background-color: $orange;
+  border-color: $orange;
+}

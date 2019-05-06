@@ -21,7 +21,7 @@ class ArtistType extends AbstractType
     {
 
         $builder
-            ->add('isArtist', CheckboxType::class, ['label' => 'Mode artiste', 'required' => false])
+            ->add('isArtist', CheckboxType::class, ['label' => 'Mode artiste activé', 'required' => false, 'attr' => ['class' => 'switch_1']])
             ->add('pseudo', null, ['required' => false, 'attr' => ['class' => 'form-control']])
             ->add('pictureFile', VichImageType::class, ['label' => 'Photo de profil', 'required' => false, 'empty_data' => false, 'attr' => ['class' => 'btn btn-outline-primary']])
             ->add('firstname', null, ['label' => 'Prénom','attr' => ['class' => 'form-control'] ])

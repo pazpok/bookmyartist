@@ -1,3 +1,46 @@
-{{ form_start(form, {'attr' : {'class': 'd-flex row m-0 m-auto justify-content-center'}}) }}
-    {{ form_widget(form) }}
+{% if user.isArtist != false %}
+    {{ form_start(form, {'attr' : {'class': 'd-flex row m-0 m-auto'}}) }}
+{% else %}
+    {{ form_start(form, {'attr' : {'class': 'd-flex flex-column justify-content-center m-auto'}}) }}
+{% endif %}
+    {{ form_row(form.isArtist, {'label_attr' : {'class': 'switch-label h3 font-weight-normal'}}) }}
+    <div class="d-flex justify-content-between flex-wrap mb-3">
+        {% if user.isArtist != false %}
+            <div class="col-md-5 border rounded bg-light p-2 m-1">
+        {% else %}
+            <div class="border rounded bg-light p-2 m-auto">
+        {% endif %}
+            <p class="h3 text-center">Vos informations personnelles</p>
+            {% if user.isArtist != false %}
+                <div class="artist-social">{{ form_row(form.pseudo) }}</div>
+            {% endif %}
+            <div class="artist-social">{{ form_row(form.firstname) }}</div>
+            <div class="artist-social">{{ form_row(form.lastname) }}</div>
+            <div class="artist-social">{{ form_row(form.email) }}</div>
+            <div class="artist-social">{{ form_row(form.pictureFile) }}</div>
+            {% if user.isArtist != false %}
+                <p class="h4 text-center">Vos informations artiste</p>
+                <div class="artist-social">{{ form_row(form.artistId) }}</div>
+                <div class="artist-social">{{ form_row(form.type) }}</div>
+                <div class="artist-social">{{ form_row(form.genre) }}</div>
+                <div class="artist-social">{{ form_row(form.localisation) }}</div>
+            {% endif %}
+        </div>
+        {% if user.isArtist != false %}
+            <div class="col-md-5 border rounded bg-light p-2 m-1">
+                    <p class="h3 text-center">Vos réseaux sociaux</p>
+                    <div class="artist-social artist-fb"><i class="fa fa-facebook fa-2x"></i>{{ form_row(form.facebook) }}</div>
+                    <div class="artist-social artist-twitter"><i class="fa fa-twitter-square fa-2x"></i>{{ form_row(form.twitter) }}</div>
+                    <div class="artist-social artist-yt"><i class="fa fa-youtube-play fa-2x"></i>{{ form_row(form.youtube) }}</div>
+                    <div class="artist-social artist-soundcloud"><i class="fa fa-soundcloud fa-2x"></i>{{ form_row(form.soundcloud) }}</div>
+                    <div class="artist-social artist-spotify"><i class="fa fa-spotify fa-2x"></i>{{ form_row(form.spotify) }}</div>
+                    <hr class="mt-5">
+                    <p class="h3 text-center mt-5">Vos connections avec les plateformes musicales</p>
+                    <div class="artist-social">{{ form_row(form.spotifyId) }}</div>
+                    <div class="artist-social">{{ form_row(form.youtubeId) }}</div>
+                    <div class="artist-social">{{ form_row(form.soundcloudId) }}</div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="m-auto">{{ form_row(form.save) }}</div>
 {{ form_end(form) }}
