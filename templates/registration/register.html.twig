@@ -4,8 +4,14 @@
     <h1 class="text-center mt-3">Créér mon compte BookMyArtist</h1>
     <div class="container d-flex mt-5">
         <div class="register-form col">
-            {{ form_start(form, {'attr' : {'class': 'd-flex row m-0 m-auto justify-content-center'}}) }}
-            {{ form_widget(form) }}
+            {{ form_start(form, {'attr' : {'class': 'd-flex row m-0 m-auto flex-column'}}) }}
+                {{ form_row(form.firstname) }}
+                {{ form_row(form.lastname) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.plainPassword) }}
+                <a href="{{ path('cgucgv') }}" target="_blank">Termes et conditions</a>
+                {{ form_row(form.termsAccepted) }}
+                {{ form_row(form.save) }}
             {{ form_end(form) }}
         </div>
         <div class="register-text col">

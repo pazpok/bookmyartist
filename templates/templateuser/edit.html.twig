@@ -11,13 +11,13 @@
                         <div class="artist-template">{{ form_row(form.templateDescription) }}</div>
                         <div class="artist-template">{{ form_row(form.templateImageFile) }}</div>
                     </div>
+                    <div class="w-25 m-auto">{{ form_row(form.save) }}</div>
                     <div class="formules">
                         <ul class="formules" data-prototype="{{ form_row(form.formules.vars.prototype)|e('html_attr') }}">
                         </ul>
                     </div>
                 </div>
                 {{ form_end(form) }}
-                <div class="w-25 m-auto">{{ form_row(form.save) }}</div>
             </div>
         <br>
     </div>

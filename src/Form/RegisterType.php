@@ -21,8 +21,8 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', null, ['attr' => ['class' => 'form-control'] ])
-            ->add('lastname', null, ['attr' => ['class' => 'form-control']])
+            ->add('firstname', null, ['label' => 'Prénom : ', 'attr' => ['class' => 'form-control'], 'translation_domain' => 'messages' ])
+            ->add('lastname', null, ['attr' => ['label' => 'Nom : ', 'class' => 'form-control']])
             ->add('email', EmailType::class, ['attr' => ['class' => 'form-control']])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -30,10 +30,11 @@ class RegisterType extends AbstractType
                 'second_options' => ['label' => 'Répétez votre mot de passe : ', 'attr' => ['class' => 'form-control']]
             ])
             ->add('termsAccepted', CheckboxType::class, [
+                'label' => 'Acceptez les termes et conditions ',
                 'mapped' => false,
                 'constraints' => new isTrue()
             ])
-            ->add('save', SubmitType::class, ['label' => 'S\'enregistrer', 'attr' => ['class' => 'btn btn-outline-primary']])
+            ->add('save', SubmitType::class, ['label' => 'S\'enregistrer', 'attr' => ['class' => 'btn btn-outline-success']])
         ;
     }
 

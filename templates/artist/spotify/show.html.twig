@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container">
         <div class="mb-5">
-            <h1 class="text-center">{{ user.artistId }} classique</h1>
+            <h1 class="text-center">{{ user.artistId }}</h1>
             <h3 class="text-center">{{ user.type }} | {% for genre in user.genre %}  {{ genre }} {% endfor %} </h3>
         </div>
         <div class="mb-5 text-center">
@@ -11,13 +11,13 @@
             <h2 class="">{{ user.templateTitle }}</h2>
             <p>{{ user.templateDescription }}</p>
         </div>
-        <div class="border w-50 m-auto mb-5 mt-5">
+        <div class="border rounded w-75 m-auto mb-5 mt-5 p-3">
             <h3 class="text-center">Musique spotify de {{ user.artistId }}</h3>
             <ul>
                 {% for song in data.request.lastResponse["body"].tracks %}
-                    <li><i class="fa fa-spotify"></i> {{ song.name }}
+                    <li class="p-1 ml-2"><i class="fa fa-spotify fa-2x"></i> <span>{{ song.name }} | {{ song.album.name }}</span>
                         {% if song.preview_url != null %}
-                            <a href="{{ song.preview_url }}">Écouter l'extrait</a></li>
+                            <a href="{{ song.preview_url }}"><i class="fa fa-play"></i>Écouter l'extrait</a></li>
                         {% else %}
                             <p>Pas d'extrait disponible, lien direct vers spotify</p>
                         {% endif %}
@@ -33,8 +33,8 @@
 
         <div class="row justify-content-around">
             {{ include('artist/formule/show.html.twig') }}
-            <div class="col-md-3 border mt-5 d-flex align-items-center">
-                <ul class="mt-4 d-inline">
+            <div class="col-md-4 border rounded mt-5 d-flex align-items-center hblue">
+                <ul class="mt-4 d-inline text-white">
                     <li class="mb-4"><i class="fa fa-lock fa-2x"></i> Paiment 100% sécurisé</li>
                     <li class="mb-4"><i class="fa fa-warning fa-2x"></i> Assurance en cas d'annulation</li>
                     <li class="mb-4"><i class="fa fa-volume-control-phone fa-2x"></i> En lien direct avec l'artiste</li>

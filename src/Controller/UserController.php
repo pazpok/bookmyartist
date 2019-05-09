@@ -30,32 +30,44 @@ class UserController extends AbstractController
     public function accompt(Request $request)
     {
 //        $this->denyAccessUnlessGranted('ROLE_USER', null, 'Unable to access this page!');
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
 
-        if ($this->getUser()->isArtist()) {
+        dump($user);
+        if ($user->isArtist()) {
             $form = $this->createForm(ArtistType::class, $user, ["validation_groups" => "create"]);
-            $form->handleRequest($request);
         } else {
             $form = $this->createForm(UserType::class, $user);
-            $form->handleRequest($request);
         }
+        $form->handleRequest($request);
+
+        dump($request);
+        dump($user);
 
         $tform = $this->createForm(TemplateChoiceType::class, $user, ["validation_groups" => "create"]);
         $tform->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->persist($user);
+            $em->flush();
 
-            return $this->redirectToRoute('app_user');
+            //return $this->redirectToRoute('app_user');
         }
         if ($tform->isSubmitted() && $tform->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em->persist($user);
+            $em->flush();
 
             return $this->redirectToRoute('app_user_template');
         }
 
-        if ($this->getUser()->isArtist()) {
+        if ($user->isArtist()) {
+            $form = $this->createForm(ArtistType::class, $user, ["validation_groups" => "create"]);
+        } else {
+            $form = $this->createForm(UserType::class, $user);
+        }
+
+        if ($user->isArtist()) {
             return $this->render('user/account.html.twig', [
                 'user' => $user,
                 'form' => $form->createView(),
@@ -135,7 +147,7 @@ class UserController extends AbstractController
                 $api->setAccessToken($accessToken);
                 $api->getArtistTopTracks($spotifyId, ["country" => "FR"]);
             }
-
+//            dump($api);die();
             return $this->render('artist/spotify/show.html.twig',
                 ['user' => $user, 'formules' => $formules, 'comments' => $comments, 'data' => $api,
                 ]);

@@ -1,21 +1,19 @@
-<div class="border col-md-6 mt-5 ">
-    <h3 class="text-center">Formule {{ user.artistId }}</h3>
-    <form action="{{ path('reservation') }}" method="GET" name="formule-resa">
+<div class="border rounded col-md-6 mt-5 hblue">
+    <h3 class="text-center text-white mt-2">Formule {{ user.artistId }}</h3>
+    <form action="{{ path('reservation') }}" method="GET" name="formule-resa" class="d-flex flex-column">
         {% for formule in formules %}
-            <div class="border row">
-                <div class="col">
+            <div class="border rounded row m-1">
+                <div class="col text-white">
                     <h4>{{ formule.title }}</h4>
                     <p>{{ formule.description }}</p>
                     <p>Durée évènement : {{ formule.tpsEvent|date('H:i') }} | Temps installation : {{ formule.tpsInstall|date('H:i') }}</p>
                 </div>
-                <div class="col-xs-1 align-self-center">
-                        <label>
-                            <input type="checkbox" name="formule-choice">
-                        </label>
-                    <h5>{{ formule.price }}</h5>
+                <div class="col-xs-1 align-self-center d-flex">
+                    <input type="checkbox" name="formule-choice" class="mr-3 mt-1">
+                    <h5 class="text-white">{{ formule.price }} €</h5>
                 </div>
             </div>
         {% endfor %}
-            <input type="submit" class="btn btn-outline-primary">
+            <input type="submit" class="btn btn-outline-primary m-auto">
     </form>
 </div>

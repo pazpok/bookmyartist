@@ -19,7 +19,12 @@ $orange : #EB7F00;
   font-family: "Montserrat Light", sans-serif;
 }
 
+a {
+  color: $lblue;
+}
+
 a:hover{
+  color: $hblue;
   text-decoration: none;
 }
 
@@ -39,6 +44,27 @@ li {
 img {
   max-width: 100%;
 }
+
+.lwhite {
+  background-color: $lwhite;
+}
+
+.lblue {
+  background-color: $lblue;
+}
+
+.hblue {
+  background-color: $hblue;
+}
+
+.vlblue {
+  background-color: $vlblue;
+}
+
+.orange {
+  background-color: $orange;
+}
+
 
 i.fa-facebook-official, .fa-twitter, .fa-youtube, .fa-instagram, .fa-lock, .fa-warning, .fa-volume-control-phone {
   display: inline-block;
@@ -277,4 +303,19 @@ input[type="checkbox"].switch_1:checked:after{
 
 #template_templateDescription {
   width: 100%;
+}
+
+.btn-outline-success {
+  color: $lblue;
+  border-color: $lblue;
+}
+.btn-outline-success:hover {
+  color: $lwhite;
+  border-color: $lblue;
+  background-color: $lblue;
+}
+
+#comment {
+  display: flex;
+  flex-direction: column;
 }

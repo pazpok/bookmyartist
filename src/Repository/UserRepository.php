@@ -32,15 +32,17 @@ class UserRepository extends ServiceEntityRepository
 
     public function searchBy(string $sq)
     {
+        $sq = "%$sq%";
+
         $qb = $this->createQueryBuilder('u');
         $qb = $qb
             ->innerJoin('u.genre', 'g')
             ->innerJoin('u.type', 't')
             ->where($qb->expr()->orX(
-                    $qb->expr()->eq('g.libelle', ':sq'),
-                    $qb->expr()->eq('u.artistId', ':sq'),
-                    $qb->expr()->eq('t.libelle', ':sq'),
-                    $qb->expr()->eq('u.localisation', ':sq'))
+                    $qb->expr()->like('g.libelle', ':sq'),
+                    $qb->expr()->like('u.artistId', ':sq'),
+                    $qb->expr()->like('t.libelle', ':sq'),
+                    $qb->expr()->like('u.localisation', ':sq'))
             );
 
         return $qb->setParameter(':sq', $sq)->getQuery()->getResult();

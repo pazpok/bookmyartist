@@ -26,6 +26,9 @@ class TemplateType extends AbstractType
                 'allow_add' => true,
                 'prototype' => true,
                 'by_reference' => false,
+                'label' => 'Vos formules',
+                'label_attr' => ['class' => 'h2'],
+                'attr' => ['class' => 'artist-formules']
             ])
             ->add('save', SubmitType::class, ['attr' => ['class' => 'btn btn-outline-success']])
         ;
