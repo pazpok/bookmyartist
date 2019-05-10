@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -66,6 +68,19 @@ class UserRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
 
+    }
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(): Query
+    {
+        return $this->findVisibleQuery()->getQuery();
+    }
+
+    public function findVisibleQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('u');
     }
 
 }

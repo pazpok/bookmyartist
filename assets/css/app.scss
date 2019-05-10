@@ -319,3 +319,17 @@ input[type="checkbox"].switch_1:checked:after{
   display: flex;
   flex-direction: column;
 }
+
+.page-link {
+  color: $lblue;
+}
+
+.page-link:hover {
+  background-color: $hblue;
+  border-color: $hblue;
+}
+
+.page-item.active .page-link {
+  background-color: $hblue;
+  border-color: $hblue;
+}

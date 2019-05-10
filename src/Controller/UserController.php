@@ -34,7 +34,7 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $templates = $this->getDoctrine()->getRepository(Template::class)->findAll();
 
-        dump($user);
+//        dump($user);
         if ($user->isArtist()) {
             $form = $this->createForm(ArtistType::class, $user, ["validation_groups" => "create"]);
         } else {
@@ -42,8 +42,8 @@ class UserController extends AbstractController
         }
         $form->handleRequest($request);
 
-        dump($request);
-        dump($user);
+//        dump($request);
+//        dump($user);
 
         $tform = $this->createForm(TemplateChoiceType::class, $user, ["validation_groups" => "create"]);
         $tform->handleRequest($request);

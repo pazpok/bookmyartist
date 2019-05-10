@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Genre;
 use App\Entity\Type;
 use App\Entity\User;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
@@ -13,12 +15,17 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function homepage(PaginatorInterface $paginator, Request $request)
     {
         $em = $this->getDoctrine();
-        $users = $em->getRepository(User::class)->findAll();
+        $users = $paginator->paginate(
+            $em->getRepository(User::class)->findAllVisibleQuery(),
+            $request->query->getInt('page', 1), 7
+        );
+
         $types = $em->getRepository(Type::class)->findAll();
         $genres = $em->getRepository(Genre::class)->findAll();
+
 
         return $this->render('default/homepage.html.twig', [
             'users' => $users,
