@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="d-flex justify-content-around mt-5">
+    <div class="d-flex justify-content-around mt-5 flex-wrap">
         {% for user in users %}
             {% include 'user/card.html.twig' %}
         {% endfor %}
